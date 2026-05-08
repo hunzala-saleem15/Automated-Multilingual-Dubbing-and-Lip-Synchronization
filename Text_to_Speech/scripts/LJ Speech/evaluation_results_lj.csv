@@ -1,0 +1,6 @@
+Original Text,Transcribed Text,WER,Similarity Score
+"Hello, this is a test to calculate the word error rate."," Hello, this is a test to calculate the word error rate.",0.0,0.5476
+Artificial intelligence is changing the world rapidly., Artificial intelligence is changing the world rapidly.,0.0,0.6347
+I hope this experiment works correctly for my research., I hope this experiment works correctly for my research.,0.0,0.6284
+Voice cloning allows preserving the identity of the speaker., Voice cloning allows preserving the identity of the speaker.,0.0,0.6559
+The weather today is very nice for a walk., The weather today is very nice for a walk.,0.0,0.4968

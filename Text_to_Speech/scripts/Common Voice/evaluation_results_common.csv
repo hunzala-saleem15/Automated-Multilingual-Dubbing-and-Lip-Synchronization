@@ -1,0 +1,5 @@
+Original,Transcribed,WER,Similarity
+"Hello, this is a test to calculate the word error rate."," Hello, this is a test to calculate the word error width.",0.0909,0.6081
+Artificial intelligence is changing the world rapidly.," artificial intelligence, exchanging the world rapidly.",0.4286,0.6082
+Voice cloning allows preserving the identity of the speaker., of cloning allows preserving the identity of the speaker.,0.1111,0.6056
+The weather today is very nice for a walk., The weather today is very nice for a walk.,0.0,0.6186

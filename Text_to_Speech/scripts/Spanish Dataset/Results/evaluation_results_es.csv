@@ -1,0 +1,6 @@
+Original Text,Transcribed Text,WER,Similarity Score
+"Hola, esta es una prueba para calcular la tasa de error de palabras."," Hola, este es una prueba para calcular la tasa de error de palabras.",0.0769,0.4425
+La inteligencia artificial está cambiando el mundo rápidamente., La inteligencia artificial está cambiando el mundo rápidamente.,0.0,0.4477
+Espero que este experimento funcione correctamente para mi investigación., Espero que este experimento funcione correctamente para mi investigación.,0.0,0.3571
+La clonación de voz permite preservar la identidad del hablante., La clonación de voz permite preservar la identidad del hablante.,0.0,0.4342
+El clima hoy está muy agradable para salir a caminar., el clima hoy está muy agradable para salir a caminar,0.1,0.4548
