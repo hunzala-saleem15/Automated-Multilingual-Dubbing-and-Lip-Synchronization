@@ -30,3 +30,54 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 
 # Architecture Overview
 ![image alt](https://github.com/hunzala-saleem15/Automated-Multilingual-Dubbing-and-Lip-Synchronization/blob/main/Architecture.jpeg?raw=true)
+
+# Datasets
+
+## Machine Translation Datasets
+
+| Dataset | Link |
+|---|---|
+| Europarl | https://www.statmt.org/europarl/ |
+| CoVoST-2 | https://huggingface.co/datasets/facebook/covost2 |
+| WMT News | https://huggingface.co/datasets/wmt/wmt19 |
+| OPUS-100 | https://opus.nlpl.eu/opus-100.php |
+
+---
+
+## TTS Datasets
+
+| Dataset | Link |
+|---|---|
+| LibriTTS | https://www.openslr.org/60/ |
+| LjSpeech | https://www.openslr.org/19/ |
+| CSS10 | https://github.com/Kyubyong/css10 |
+| Common Voice | https://commonvoice.mozilla.org/en |
+# Installation
+## Clone Repository
+git clone https://github.com/your-repository/project-name.git
+cd project-name
+
+# Team Members
+
+- Hunzala Saleem
+- Nida Ilyas
+- Ayesha Sarfraz
+- Laika Sarfraz
+
+# Acknowledgements
+The authors would like to thank the developers and researchers behind the open-source ASR, Machine Translation, Text-to-Speech, and Lip Synchronization models utilized in this project. We also acknowledge the maintainers of all publicly available datasets used for training, evaluation, and experimentation throughout this research.
+Special thanks to GIFT University for providing GPU infrastructure, computational facilities, and technical support, which played a crucial role in successfully conducting experiments and developing the complete multilingual dubbing and lip synchronization pipeline.
+We further appreciate the contributions of the open-source research community whose work in speech processing, natural language processing, computer vision, and generative AI made this project possible.
+# License
+
+This project is intended for:
+
+- Academic Research
+- Educational Purposes
+- Non-commercial experimentation
+
+Please ensure compliance with:
+
+- Dataset licenses
+- Pretrained model licenses
+- Third-party repository licenses
