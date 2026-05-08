@@ -1,0 +1,19 @@
+MODEL EVALUATION RESULTS
+------------------------
+
+Task: English → Spanish Machine Translation
+
+Dataset:
+- Training samples: 20,000
+- Test samples: Custom test set
+
+BLEU Scores:
+- Base Model (NiuTrans/LMT-60-1.7B): 53.99
+- Fine-Tuned Model: 85.32
+
+Improvement:
+- BLEU score increased by 31.33 points
+
+Conclusion:
+Fine-tuning significantly improved translation quality even with a small dataset,
+demonstrating the effectiveness of task-specific adaptation of large pre-trained models.
