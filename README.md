@@ -55,6 +55,7 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 # Installation
 ## Clone Repository
 git clone https://github.com/hunzala-saleem15/Automated-Multilingual-Dubbing-and-Lip-Synchronization.git
+
 cd project-name
 
 # Team Members
