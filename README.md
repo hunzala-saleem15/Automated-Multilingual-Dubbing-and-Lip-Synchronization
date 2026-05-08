@@ -54,7 +54,7 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 | Common Voice | https://commonvoice.mozilla.org/en |
 # Installation
 ## Clone Repository
-git clone https://github.com/your-repository/project-name.git
+git clone https://github.com/hunzala-saleem15/Automated-Multilingual-Dubbing-and-Lip-Synchronization.git
 cd project-name
 
 # Team Members
