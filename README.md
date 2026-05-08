@@ -58,6 +58,15 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 - git clone https://github.com/hunzala-saleem15/Automated-Multilingual-Dubbing-and-Lip-Synchronization.git
 - cd Automated-Multilingual-Dubbing-and-Lip-Synchronization
 
+# Models
+## Text_to_Speech
+The models and the checkpoints are available here:
+https://huggingface.co/hunzala-saleem/My-TTS-Models
+
+## Machine Translatio
+The models and the checkpoints are available here:
+https://huggingface.co/NidaIlyas/My-MT-Models
+
 # Team Members
 
 - Hunzala Saleem
