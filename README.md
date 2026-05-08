@@ -1,15 +1,16 @@
 # Automated-Multilingual-Dubbing-and-Lip-Synchronization
 Automatic Multilingual Dubbing and Lip Synchronization is a research-oriented project focused on generating multilingual dubbed videos while preserving natural visual synchronization between speech and lip movements.
 The system processes short videos and converts them into multiple target languages through an end-to-end pipeline involving:
-•	Automatic Speech Recognition (ASR)
-•	Machine Translation (MT)
-•	Text-to-Speech Synthesis (TTS)
-•	Lip Synchronization
+-	Automatic Speech Recognition (ASR)
+-	Machine Translation (MT)
+-	Text-to-Speech Synthesis (TTS)
+-	Lip Synchronization
+
 The primary objective is to create a scalable and modular multilingual video dubbing framework that maintains:
-•	Speaker identity
-•	Gender characteristics
-•	Approximate age
-•	Audio-video synchronization
+-	Speaker identity
+-	Gender characteristics
+-	Approximate age
+-	Audio-video synchronization
 
 # Problem Statement
 Language is main barrier in learning as most of the content is available in foreign languages. Although watching content online facilitates with subtitles feature but Subtitles can be difficult to follow because viewers must read and watch at the same time. On the other hand, dubbing requires extra time, resources, and voice actors, which increases production cost. As a result, media creators must produce multiple versions of the same content for different languages, making the process slow and expensive.
@@ -54,9 +55,8 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 | Common Voice | https://commonvoice.mozilla.org/en |
 # Installation
 ## Clone Repository
-git clone https://github.com/hunzala-saleem15/Automated-Multilingual-Dubbing-and-Lip-Synchronization.git
-
-cd project-name
+- git clone https://github.com/hunzala-saleem15/Automated-Multilingual-Dubbing-and-Lip-Synchronization.git
+- cd Automated-Multilingual-Dubbing-and-Lip-Synchronization
 
 # Team Members
 
