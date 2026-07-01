@@ -1,0 +1,32 @@
+# Virtual environments
+.venv/
+.venv_litgpt/
+env/
+venv/
+
+# Cache
+.cache/
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Models and checkpoints
+models/
+runs/
+LipGER_trained_model/
+checkpoints/
+outputs/
+
+# Large model files
+*.pth
+*.pt
+*.bin
+*.ckpt
+*.safetensors
+
+# Documents
+*.pdf
+
+# OS files
+.DS_Store
+Thumbs.db

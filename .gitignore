@@ -1,0 +1,35 @@
+# Virtual environments
+.venv/
+.venv_litgpt/
+env/
+venv/
+
+# Cache
+.cache/
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+*.pyc
+.DS_Store
+
+# Models and checkpoints
+models/
+runs/
+outputs/
+output/
+checkpoints/
+LipGER_trained_model/
+
+# TinyLlama large model folders
+Automatic_Speech_Recognition/TinyLlama/open_llama_3b/
+Automatic_Speech_Recognition/TinyLlama/converted_weights/
+
+# Large model files
+*.pth
+*.pt
+*.bin
+*.ckpt
+*.safetensors
+
+# PDFs
+*.pdf
