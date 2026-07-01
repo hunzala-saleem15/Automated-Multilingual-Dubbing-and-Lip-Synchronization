@@ -1,0 +1,476 @@
+Using device: cuda
+
+[INFO] Loading Whisper-Large-v2 model...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1259/1259 [00:01<00:00, 1119.19it/s, Materializing param=model.encoder.layers.31.self_attn_layer_norm.weight]
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+A custom logits processor of type <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> has been passed to `.generate()`, but it was also created in `.generate()`, given its parameterization. The custom <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> will take precedence. Please check the docstring of <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> to see related `.generate()` flags.
+A custom logits processor of type <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> has been passed to `.generate()`, but it was also created in `.generate()`, given its parameterization. The custom <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> will take precedence. Please check the docstring of <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> to see related `.generate()` flags.
+
+File: session02_cut03.wav
+Whisper Output:  stressed, we're cackling in the back, she was not having it, and it was just like a really, really funny part of the trip. And then of course, like, we had to return the car to the airport in Rome. The airport, like the driving around the airport in Rome is very confusing. All the signs are in Italian. We ended up going through the loop around the airport like four times because she couldn't get in the right lane or miss the exit
+Reference: stressed, we're cackling in the back. She was not having it. And it was just like a really, really funny part of the trip. And then of course, like we had to return the car to the airport in Rome. Uh, the airport, like the driving around the airport in Rome is very confusing. All the signs are in Italian. We ended up going through the loop around the airport, like four times because she couldn't get in the right lane or miss the exit.
+WER: 1.18%
+
+File: session03_cut10.wav
+Whisper Output:  and you were on like one of the highest peaks in the Rocky Mountains. Actually, like the picture that I have is like my workplace profile picture is from that trip. So we're up there and everything and like, you know, I told the students like, oh, like we'll just take an hour, everybody do your thing, meet it back in the van at this time. And because you're so high up, you could see the weather and I'm like standing up there watching a storm roll in.
+Reference: and you were on like one of the highest peaks in the Rocky Mountains. Actually, like the picture that I have is like my workplace profile picture is from that trip. So we're up there and everything. And like, you know, I told the students like, oh, like we'll just take an hour. Everybody do your thing. Meet it back in the van at this time. And because you're so high up, you could see the weather. And I'm like standing up there watching a storm roll in.
+WER: 0.00%
+
+File: session03_cut07.wav
+Whisper Output:  like a really like it's a lookout and you can see like all the these different peaks of like the Rocky Mountains. I'm like, yeah, that sounds great. So I like, you know, hop in this conversion van and just put on Google Maps and like what I didn't realize was that I would be driving this giant 12 passenger van up the side of a mountain up the sides of multiple mountains with like all of these switchbacks and tight turns and I
+Reference: like a really like it's a lookout and you can see like all the these different peaks of like the Rocky Mountains. I'm like, yeah, that sounds great. So I like, you know, hop in this conversion van and just put on Google Maps and like what I didn't realize was that I would be driving this giant 12 passenger van up the side of a mountain, up the sides of multiple mountains with like all of these switchbacks and tight turns.
+WER: 2.44%
+
+File: session03_cut04.wav
+Whisper Output:  have in the bar. They like kept that framed thing up. I think just because it is a dumb and dumber thing. So anyway, it was really cool. So what like part of what they were doing was learning about like National Park Conservation. And so we had a day where we like drove into the park and like, here's me. I'm not a good driver as we've already discussed driving this like conversion van with like
+Reference: still have in the bar. They like kept that framed thing up. I think just because it is a dumb and dumber thing. So anyway, it was really cool. So what like part of what they were doing was learning about like national park conservation. And so we had a day where we like drove into the park and like, here's me, I'm not a good driver as we've already discussed, driving this like conversion van with like 12
+WER: 2.53%
+
+File: session03_cut03.wav
+Whisper Output:  The funny thing is like Tim and I overlapped for like five hours in Estes like we just like got lunch and wanted to catch up and like obviously we had all these jokes going about the road trip to Laramie like dumb and dumber and everything and in Estes Park is the Stanley Hotel Which is the hotel they used in dumb and dumber that was supposed to be in Aspen So we got to go to that which was like really fun And you know, there's like the the scene in the movie was like we landed on the moon. They actually still
+Reference: The funny thing is, like, Tim and I overlapped for, like, five hours in Estes. Like, we just, like, got lunch and wanted to catch up. And, like, obviously we had all these jokes going about the road trip to Laramie, like, Dumb and Dumber and everything. And in Estes Park is the Stanley Hotel, which is the hotel they used in Dumb and Dumber that was supposed to be in Aspen. So we got to go to that, which was, like, really fun. And, you know, there's, like, the scene in the movie was, like, we landed on the moon. They actually still...
+WER: 0.96%
+
+File: session01_cut02.wav
+Whisper Output:  Oh, yeah, the mom in Home Alone, like she's got like that real fair fierce haircut and those 90 shoulder pads Like it's definitely a vibe And I feel like Catherine O'Hare was great in that role but then you see her in Schitt's Creek and just the way that she is like able to embody such a character and such a caricature but like Do it in a way that still creates this character as well
+Reference: Oh yeah, the mom in Home Alone, she's got that real fierce haircut and those 90s shoulder pads. It's definitely a vibe. And I feel like Catherine O'Hare was great in that role, but then you see her in Schitt's Creek and just the way that she is able to embody such a character and such a caricature, but do it in a way that still creates this character
+WER: 13.04%
+
+File: session02_cut04.wav
+Whisper Output:  to get to the rental car place and everything. So we go through all of this. She almost crashes into a pole getting into the rental car place because she's driving like an Audi A8 or A6 or something, which is like a huge car for Europe, right? And like going through these narrow little turns, like up through the parking garage. And so it was just like all around, all around funny and all around a reminder of why
+Reference: to get to the rental car place and everything. So we go through all of this. She almost crashes into a pole getting into the rental car place because she's driving like an Audi A8 or A6 or something, which is like a huge car for Europe, right? And like going through these narrow little turns like up through the parking garage. And so it was just like all around funny and all around a reminder of why
+WER: 2.56%
+
+File: session05_cut04.wav
+Whisper Output:  And I was like, okay, well, what's the solution here? And they were like, well, you can pay to have a credit meter installed so that you hook it up to your outdoor spigot and then like it subtracts that off of your sewage bill. I was like, oh my God, that's a great idea. They're like, yep, you have to buy it yourself. It has to be installed by a licensed plumber. We charge you $125 service fee a year to use it. I was like, does anybody do this?
+Reference: And I was like, okay, well, what's the solution here? And they were like, well, you can pay to have a credit meter installed so that you hook it up to your outdoor spigot and then like it subtracts that off of your sewage bill. I was like, oh my God, that's a great idea. They're like, yep, you have to buy it yourself. It has to be installed by a licensed plumber. We charge you $125 service fee a year to use it. I was like, does anybody do this?
+WER: 0.00%
+
+File: session04_cut10.wav
+Whisper Output:  you
+Reference: Thank you.
+WER: 50.00%
+
+File: session04_cut03.wav
+Whisper Output:  of our house it's really nice like we like the we have like our front porch that's like basically like just enough to walk on you know it's like a real porch like the gas meter is there and like the everything so he like planted this huge flowering garden around that so that like when it's in bloom it like covers up the gas meter and just looks really nice and he's like obviously like as somebody who's really into gardening
+Reference: front of our house, it's really nice. Like we, like the, we have like our front porch. That's like basically like just enough to walk on, you know, it's not like a real porch, like the gas meter is there and like the everything, so he like planted this huge flowering garden around that. So that like when it's in bloom, it like covers up the gas meter. It just looks really nice. And he's like, obviously like as somebody who's really into gardening,
+WER: 3.57%
+
+File: session01_cut04.wav
+Whisper Output:  channels helps. Like my mom and I have this deal going where I let her use my Netflix and Hulu and in exchange I get her Fios login so that I can like, and my parents are crazy. They pay for like every single premium channel. So like Showtime, HBO, Starz, Encore, like who even watches that anymore? My parents do. And so we have logins. So it's easy to watch a lot of stuff.
+Reference: premium channels helps. Like my mom and I have this deal going where I let her use my Netflix and Hulu and in exchange I get her Fios login so that I can, like, and my parents are crazy, they pay for like every single premium channel. So like Showtime, HBO, Starz, Encore, like who even watches that anymore? My parents do. And so we have logins so it's easy to watch a lot of stuff.
+WER: 1.32%
+
+File: session03_cut05.wav
+Whisper Output:  students in it. So we go to the park one day because they have this like talk with the park rangers about like and like we didn't really know like we had just contacted the park like hey can you give us like can the park rangers do like a half day on like conservation efforts? And they're yeah. So they ended up like one of the conservation efforts they do is like making sure that the deer population is in control and they do it by counting deer poop. So like our students ended up having to like draw out this plot of
+Reference: students in it. So we go to the park one day because they have this like talk with the park rangers about like, and like, we didn't really know, like we had just contacted the park, like, Hey, can you give us like, can the park rangers do like a half day on like conservation efforts? And they're yeah. So they ended up like one of the conservation efforts they do is like making sure that the deer population is in control and they do it by counting deer poop. So like our students ended up having to like draw out this plot of strays
+WER: 0.95%
+
+File: session03_cut08.wav
+Whisper Output:  was so stressed about it because I'm like, okay, like the like risk, like, you know, working in study abroad, like we're always super concerned about like risk and risk mitigation and making sure that everything that we do is like, that's risky is balanced out by an academic purpose. And I'm like, okay, this isn't academic in any way. Like this is literally just, we're being tourists. So I'm like, okay, this van cannot go over the side of the mountain. And I got to the point where I was like the dad, who's like, I can't deal with the
+Reference: was so stressed about it because I'm like, okay, like the, like risk, like, you know, working in study abroad, like we're always super concerned about like risk and risk mitigation and making sure that everything that we do is like, that's risky is balanced out by an academic purpose. And I'm like, okay, this isn't academic in any way. Like, this is literally just, we're being tourists. So I'm like, okay, this van cannot go over the side of the mountain. And I got to the point where I was like the dad who's like, I can't deal with the
+WER: 0.00%
+
+File: session01_cut06.wav
+Whisper Output:  that like picking music and stuff stresses me out. So it's like a whole, a whole thing. I don't know why I pay $10 a month for Spotify because I listen to like the same 10 albums over and over again. And I could have just bought them outright and then like not, not dealt with like a monthly subscription. But that is a little bit off topic. So I don't know, like,
+Reference: that like picking music and stuff stresses me out. So it's like a whole a whole thing. I don't know why I pay $10 a month for Spotify because I listen to like the same ten albums over and over again and I could have just bought them outright and then like not not dealt with like a monthly subscription. But that is a little bit off topic. So I don't know, like,
+WER: 1.37%
+
+File: session04_cut01.wav
+Whisper Output:  So when we moved into this house, the guy had like a giant lab. I actually met the dog, it was like the sweetest dog in the world. But that meant that like the backyard was a disaster. Like he had just like dug holes and like the guy had like dug a hole for a kiddie pool so the lab would have like somewhere to swim. And the woman who had lived, like the, it was just like clearly like,
+Reference: so when we moved in to this house um the guy had like a giant lab i actually met the dog it was like the sweetest dog in the world but that meant that like the backyard was a disaster um like he had just like dug holes and like the guy had like dug a hole for a kiddie pool so the lab would have like somewhere to swim. And the woman who had lived, like the, it was just like clearly like the person who had lived there before the house was removed.
+WER: 15.79%
+
+File: session03_cut02.wav
+Whisper Output:  I give him the keys to this crappy little Nissan Sentra so he can drive back to Denver and fly home. And I had three or four days in Rocky Mountain National Park with the students, which was like, I was like, okay, this really sucks at this, thankfully the professor's fine. He's like, okay. I was like, but I'm not mad that I get to spend four days in a national park on Pitt's dime. So it was really cool. We ended up,
+Reference: I give him the keys to this crappy little Nissan Sentra so he can drive back to Denver and fly home. And I had three or four days in Rocky Mountain National Park with the students, which was like, I was like, okay, this really sucks at this, thankfully the professor is fine. He's like, okay. I was like, but I'm not mad that I get to spend four days in a national park on Pitt's dime. So it was really cool. We ended up,
+WER: 2.35%
+
+File: session01_cut05.wav
+Whisper Output:  So yeah, trying to think what else like musician wise, obviously, I've like really been into, like, after almost a year, like revisiting chromatica, and listening to Lady Gaga and some of her older stuff. Because I feel like as we're like starting to come out of the pandemic, like it's a really good mood booster, which is, which is nice. And I don't know, other than
+Reference: So yeah, trying to think what else, like musician wise, obviously, um, I've like really been into like after almost a year, like revisiting Chromatica, uh, and listening to Lady Gaga and some of her older stuff. Um, cause I feel like as we're like starting to come out of the pandemic, like it's a really good mood booster, which is, uh, which is nice. And I don't know, other than
+WER: 7.04%
+
+File: session02_cut08.wav
+Whisper Output:  Wyoming
+Reference: Wyoming.
+WER: 0.00%
+
+File: session04_cut04.wav
+Whisper Output:  and has a lot of experience with plants, like planted stuff so that there's like all kinds of different layers. So it's like you have like tall grasses in the back and then like shorter plants and then things that like cascade out of the garden bed. It's beautiful. And then on the other side of our yard, he planted like a dogwood tree and has like this whole garden bed around it with like a birdbath in it. It's so nice. And then you go around the back
+Reference: and has a lot of experience with plants, like planted stuff so that there's like all kinds of different layers. So it's like you have like tall grasses in the back and then like shorter plants and then things that like cascade out of the garden bed. It's beautiful. And then on the other side of our yard, he planted like a dogwood tree and has like this whole garden bed around it with like a bird bath in it. It's so nice. And then you go around the back and...
+WER: 3.30%
+
+File: session04_cut07.wav
+Whisper Output:  a gardener's garden is never done. And that is true. Like every probably once a week, some package from some random nursery shows up with seeds or another plan. And I'm like, look, you're paying your half of the bills. Like, I don't care what you spend your money on. So it's really nice. So that is a lot of like the gardening work that he has done. And we definitely
+Reference: a gardener's garden is never done. And that is true. Like every probably once a week, some package from some random nursery shows up with seeds or another plan. And I'm like, look, you're paying your half the bills. Like, I don't care what you spend your money on. So it's it's really nice. So that is a lot of like the gardening work that he has done, and we definitely
+WER: 2.82%
+
+File: session02_cut07.wav
+Whisper Output:  where it's like, I just drive most of the time. But if we went abroad, when we go abroad again, I will not be driving because I don't like it and it stresses me out. Do we have more time to keep talking about driving? Okay, so I don't know. I guess I don't mind driving. I like taking road trips. One time a coworker and I drove from Pittsburgh to
+Reference: where it's like, I just drive most of the time. But if we went abroad, when we go abroad again, I will not be driving because I don't like it and it stresses me out. Do we have more time to keep talking about driving? OK, so I don't know. Like I, I guess I don't mind driving. Like I like taking road trips. Like one time a coworker and I drove from Pittsburgh to Hawaii
+WER: 7.89%
+
+File: session04_cut05.wav
+Whisper Output:  like the Three sides of the back of our yard are just all filled in with plants So like our yard slopes down to our neighbors fence. So all through there are like wet Ground plants like I don't know he calls it his rain garden So like things that require a lot of moisture and then we have a big mulberry tree in the back So under that is like a shade garden that's like plants that you would find in the forest floor and then it like
+Reference: And like the three sides of the back of our yard are just all filled in with plants. So like our yard slopes down to our neighbor's fence. So all through there are like wet ground plants. Like, I don't know, he calls it his rain garden. So like things that require a lot of moisture. And then we have a big mulberry tree in the back. So under that is like a shade garden. That's like plants that you would find in the forest floor. and then it like slowly transitions between like vining plants and
+WER: 8.25%
+
+File: session02_cut01.wav
+Whisper Output:  don't speak English. So she's just like, I don't speak Italian, English, English. And they're like going back and forth. It was like a five minute ordeal. And ultimately, like, they tried to find somebody who spoke English. We were trying to explain that we didn't get a ticket. They didn't understand how we got on the highway without a ticket. So they basically just like said something and opened the gate and she drove through. But I'm pretty sure that like, it's like it is here, right? If you drive through a gate and you don't pay your toll, like they bill you by your
+Reference: don't speak English. So she's just like, I don't speak Italian, English, English. And they're like going back and forth. It was like a five minute ordeal. And ultimately, like they tried to find somebody who spoke English. We were trying to explain that we didn't get a ticket. They didn't understand how we got on the highway without a ticket. So they basically just like said something and opened the gate and she drove through. But I'm pretty sure that like it's like it is here, right? If you drive through a gate and you don't pay your toll, like they bill you by your life
+WER: 0.93%
+
+File: session03_cut06.wav
+Whisper Output:  And just like count deer poop and they're like if you think you want to work in environmental conservation Like this is part of what you do so we did that and then You know that only took us until like lunch and everybody had like packed a lunch and everything and so You know we asked the park ranger. We're like we're in the park. What else should we do? And he was like oh well like if you want to you can go up to like the highest point in the park. It's at like
+Reference: and just like count deer poop. And they're like, if you think you want to work in environmental conservation, like this is part of what you do. So we did that. And then, you know, that only took us until like lunch and everybody had like packed a lunch and everything. And so, you know, we asked the park ranger, we're like, we're in the park. What else should we do? And he was like, oh, well, like if you want to, you can go up to like the highest point in the park. it's at like 13,000 feet and you can just like drive up there and there's
+WER: 11.01%
+
+File: session02_cut06.wav
+Whisper Output:  because like he bought this new car, right? Was so excited to get a new car and it has CarPlay. So he can plug his phone in and like the little screen pops up and he will still plug his phone in, but use Google maps on his phone and look at his phone. And I'm like, I can't be in the car with you. Like you're driving me insane. I realized that my driving is unsafe. Your driving is infuriating. So we have this thing
+Reference: me out because like he bought this new car, right? Was so excited to get a new car and it has car play so he can plug his phone in and like the little screen pops up and he will still plug his phone in, but use Google maps on his phone and look at his phone. And I'm like, I can't be in the car with you. Like you're driving me insane. I realized that my driving is unsafe. Your driving is infuriating. Um, so we have this thing.
+WER: 5.56%
+
+File: session04_cut02.wav
+Whisper Output:  40 hours of work to cut down all of this like raspberry and like dig it out and like bag it up and everything. We should invest in like Lowe's garden bag stock because of the number that we go through. And so we go through all of this and everything and like he got this all so he could build out these like huge garden beds. So yeah, so in like the first year
+Reference: 40 hours of work to cut down all of this like raspberry and like dig it out and like bag it up and everything. We should invest in like Lowe's garden bag stock because of the number that we go through. And so we go through all of this and everything and like he got this all so he could build out these like huge garden beds. So yeah, so in like the
+WER: 2.74%
+
+File: session01_cut03.wav
+Whisper Output:  and was really funny. So it has like Susan Sarandon, Cher, and Michelle Pfeiffer as these like three women who fall in love with the devil and like go through this whole thing of like ending up killing him. I don't know. It's like insane, but it was like really funny and campy. We also watched Troop Beverly Hills, which is like one of my favorite movies. I remember watching that like a lot
+Reference: and was really funny so it has like Susan Sarandon Cher and Michelle Pfeiffer as these like three women who fall in love with the devil and like go through this whole thing of like ending up killing him I don't know it's like insane but it was like really funny and campy we also watched Troop Beverly Hills which is like one of my favorite movies I remember watching that like a lot
+WER: 0.00%
+
+==============================
+Processed files: 27
+Average Whisper WER: 5.47%
+==============================
+
+
+File: session07_cut06.wav
+Whisper Output:  And I remember, so there were different topics we had to speak on. I remember this one, I forget what I think I was talking about the brain, something with the brain, I think. But it was the only speeches where people could ask questions after. So typically, I don't know why our professor did that. But this was the only speech where you could ask questions after the speech or rebuttal something. And
+Reference: And I remember, so there were different topics we had to speak on. I remember this one, I forget what, I think I was talking about the brain, something with the brain, I think. But it was the only speeches where people could ask questions after. So typically, I don't know why our professor did that, but this was the only speech where you could ask questions after the speech or rebuttal something. And I remember I gave this speech and I, so I,
+WER: 11.90%
+
+File: session02_cut09.wav
+Whisper Output:  And then almost like two doors on the side because it's a glass window up top and then that same box with the X there. And then on the front there's these two wood, not beams, but wood cuttings that just come out and they're a little circular and they come out on the side and drape towards the side, which is really nice. The tables look like classic wood.
+Reference: And then almost like two doors on the side because it's a glass window up top and then that same box with the X there. And then on the front, there's these two wood, not beams, but wood cuttings that just come out and they're a little circular and they come out on the side and drape towards the side, which is really nice. The tables look like classic wood.
+WER: 0.00%
+
+File: session02_cut03.wav
+Whisper Output:  and it looks like all the lines are packed so I'm guessing that this is some international airport there's also a sign for shops and restaurants information and it looks like it's either Spanish or Italian it's like Polizia but then they also have it in English for police so definitely I
+Reference: and it looks like all the lines are packed so I'm guessing that this is some international airport there's also a sign for shops and restaurants information and it looks like it's either Spanish or Italian it's like Polizia but then they also have it in English for police so definitely I I
+WER: 1.89%
+
+File: session07_cut04.wav
+Whisper Output:  Also remember, oddly enough, back in middle school, we had to do projects on inventors, and I did a project on Leonardo da Vinci. And so I was, I made, he invented like the first hot air balloon. And I made this hot air balloon out of different paper. It was like cardboard and paper. And it was really cool. So that was, I was pretty proud of that too. That was pretty cool.
+Reference: I also remember, oddly enough, back in middle school, we had to do projects on inventors. And I did a project on Leonardo da Vinci. And so I was, I made, he invented like the first hot air balloon. And I made this hot air balloon out of different paper. It was like cardboard and paper. And it was really cool. So that was, I was pretty proud of that too. That was pretty cool.
+WER: 1.33%
+
+File: session01_cut10.wav
+Whisper Output:  what this enzyme was completely made out of this time. We were having troubles replicating the experiment. So this was pretty hard because we only got to the control. Whereas in previous experiments, they actually saw effects with the ethanol, acetaldehyde, and caffeine. We weren't able to get there yet. So I did get to see the past research with that. But for our summer research program, we were trying to figure out the control the whole time. And to be fair to the instruments were
+Reference: what this enzyme was completely made out of this time. We were having troubles replicating the experiment. So this was pretty hard because we only got to the control. Whereas in previous experiments, they actually saw effects with the ethanol, acetaldehyde, and caffeine. We weren't able to get there yet. So I did get to see the past research with that. But for our summer research program, we were trying to figure out the control the whole time. And to be fair to the instruments were
+WER: 0.00%
+
+File: session02_cut02.wav
+Whisper Output:  And they have their luggage. So I'm guessing this is the luggage check-in, which is always a nightmare. But yeah, they have a lot of dollies, a lot of lines. The airport looks like it's a big building. There's these beams that are coming in to at a time where they connect down at a V together. It looks like there's some trees in the airport, which is really nice.
+Reference: and they have their luggage. So I'm guessing this is the luggage check-in, which is always a nightmare. But yeah, they have a lot of dollies, a lot of lines. The airport looks like it's a big building. There's these beams that are coming in to a time where they connect down at a V together. It looks like there's some trees in the airport, which is really nice.
+WER: 1.45%
+
+File: session07_cut03.wav
+Whisper Output:  presentation I gave for my senior seminar. That was just a lot of work and a lot of explaining and especially science sometimes I feel like it can be pretty technical and nobody really cares so I feel like you have to make it engaging and that was a time where I felt good I'm proud of my work. So I also
+Reference: presentation I gave for my senior seminar that was just a lot of work and a lot of explaining and especially science sometimes I feel like it can be pretty technical and nobody really cares so I feel like you have to make it engaging and that was a time where I felt good I'm proud of my work so I also
+WER: 0.00%
+
+File: session07_cut01.wav
+Whisper Output:  Yep. All right. So tell me about your favorite place to relax. Yeah. So in the winter, I would say on the couch in front of the fireplace, because we have a real fireplace. So we put wood in there and I just love, I love the fire. I love the crackle and the warmth. Um, there's just awesome. In the summer,
+Reference: yep all right so tell me about your favorite place to relax yeah so in the winter I would say on the couch in front of the fireplace because we have a real fireplace so we put wood in there and I just love I love the fire I love the crackle and the warmth um they're just awesome In the summer, I have a hammock. So I typically...
+WER: 11.59%
+
+File: session03_cut07.wav
+Whisper Output:  an hour on trivia and then I was like I think I didn't say anything to anyone but I was like yeah I just have to go and then I talked to Taylor the next morning we had a one-on-one call and I was like Taylor I had an allergic reaction last night and after that trivia when I left I threw up and she was like what the heck what is wrong with you like why did you even come to it if you weren't staying or feeling good I was like I don't know I just I was new I wanted to bond with the team so I
+Reference: I was staying an hour on trivia and then I was like, I think I, I didn't say anything to anyone, but I was like, yeah, I just have to go. And then I talked to Taylor the next morning, we had a one-on-one call and I was like, Taylor, I had an allergic reaction last night. And after that trivia, when I left, I threw up. And she was like, what the heck, what is wrong with you? Like, why did you even come to it if you weren't staying or feeling good? I was like, I don't know, I just, I was new. I wanted to bond with the team.
+WER: 5.36%
+
+File: session03_cut04.wav
+Whisper Output:  right away. I had to like get out of there and I had to drive back to my hostel which was a good drive away so probably about 30, 30, 40 minutes away from this small town. And I was driving in this tiny car and I like didn't want to do any damage on the inside or the outside just because you had to pay for that but I started like having a really bad allergic reaction and I had to throw up and I remember I took this empty Doritos bag and I remember it was this sweet chili
+Reference: right away. I had to like get out of there and I had to drive back to my hostel, which was a good drive away. So probably about 30, 40 minutes away from this small town. And I was driving in this tiny car and I like didn't want to do any damage on the inside or the outside just because you had to pay for that. But I started like having a really bad allergic reaction and I had to throw up. And I remember I took this empty Doritos bag and I remember it was this sweet chili
+WER: 1.00%
+
+File: session03_cut03.wav
+Whisper Output:  But there was cashews on the salad, because I feel like in Europe, they use a lot of nuts on stuff. So they had cashews on the salad. And I was like, oh, okay, well, I should probably not eat the cashews. But I can definitely eat the lettuce. Like, I'll just move the cashews over to the side and eat the salad. Well, that was stupid of me. And I did that. And I the cashew dust was like, just as bad. I remember I had to ask the server for my check
+Reference: But there was cashews on the salad, because I feel like in Europe they use a lot of nuts on stuff. So they had cashews on the salad. And I was like, oh, okay, well, I should probably not eat the cashews, but I can definitely eat the lettuce. Like, I'll just move the cashews over to the side and eat the salad. Well, that was stupid of me. And I did that. And the cashew dust was like just as bad, I remember I had to ask the server for my
+WER: 2.17%
+
+File: session01_cut02.wav
+Whisper Output:  wanted to see the effects of caffeine and alcohol when you mix in flunitrazepam which is so all those drugs that end with pam or diazepam things like that they are usually used for folks who have insomnia so lack of sleep and they help with that what we were looking at though was to see how these drugs were being misused at bars to
+Reference: wanted to see the effects of caffeine and alcohol when you mix in flunotrazepam, which is so all those drugs that end with pam or diazepam, things like that, they are usually used for folks who have insomnia, so lack of sleep, and they help with that. What we were looking at though was to see how these drugs were being misused at bars
+WER: 3.12%
+
+File: session01_cut01.wav
+Whisper Output:  Cool, so I'm going to talk about the research I did in undergrad. I was in my one professor's lab who taught biochemistry and biochemistry was my major. And what we were looking at was CYP3A4, which is an enzyme in your liver.
+Reference: Cool, so I'm going to talk about the research I did in undergrad. I was in my one professor's lab who taught biochemistry, and biochemistry was my major. And what we were looking at was CYP3A4, which is an enzyme in your liver, and it breaks down molecules.
+WER: 10.42%
+
+File: session02_cut04.wav
+Whisper Output:  I think maybe somewhere foreign here. And yeah, maybe can we go to the next picture? Thanks Autumn. So this next one looks like a German style home. It's, I forget what that style is called, Tudor maybe? But it has nice wood in between.
+Reference: I think maybe somewhere foreign here. And... Yeah, maybe... Could we go to the next picture? Thanks, Autumn. So, this next one looks like a German-style home. It's... I forget what that style's called. Tudor, maybe? But it has nice wood in between.       
+WER: 11.63%
+
+File: session05_cut04.wav
+Whisper Output:  and I remember he was telling us, this isn't funny, but he was telling us the doctor, like he would just explain everything to the nurse and have her tell them anything because this guy was really smart but he would just be horrible, like had a horrible bedside manner. So for example, he, my sister's fiancé's dad had to do chemotherapy and he was like yeah it's this this medicine that you're gonna take for
+Reference: And I remember he was telling us, this isn't funny, but he was telling us the doctor, like he would just explain everything to the nurse and have her tell them anything because this guy was really smart, but he would just be horrible, like had a horrible bedside manner. So for example, he, my sister's fiance's dad had to do chemotherapy and he was like, yeah, this medicine that you're gonna take for this
+WER: 5.33%
+
+File: session07_cut08.wav
+Whisper Output:  awkward and it was such a strange time then I still remember it so I didn't feel nervous I was just like because it was over but I was like what the heck yeah it was weird tell me about a skill you have and how you got it hmm I guess so I've been kind of not really kind of knitting as of late actually more in
+Reference: awkward and it was such a strange time and I still remember it. So I didn't feel nervous. I was just like, cause it was over, but I was like, what the heck? Um, yeah, it was weird. Tell me about a skill you have and how you got it. Hmm. I guess. So I've been kind of, not really kind of knitting as of late. I actually more in the late twenties.
+WER: 9.59%
+
+File: session01_cut11.wav
+Whisper Output:  pretty old. So HPLC, there's a lot of issues with that. We had to get moving back and forth. But yeah, it was pretty inconclusive, at least when I left. So I wasn't sure if they were going to kind of backtrack and try the old enzyme where we didn't know everything in there. So that could have sped up the reaction that could have just gave faulty results. But yeah, so it but that was what I did in my undergrad research.
+Reference: pretty old. So HPLC, there's a lot of issues with that. We had to get moving back and forth, but yeah, it was pretty inconclusive, at least when I left. So I wasn't sure if they were going to kind of backtrack and try the old enzyme where we didn't know everything in there. So that could have sped up the reaction that could have just gave faulty results. but yeah so but that was what I did in my undergrad research it was really interesting to see it sounds a little
+WER: 11.96%
+
+File: session05_cut08.wav
+Whisper Output:  the song for on the album and he would move the button with his fingers which we couldn't see because usually you like have to press the stereo up front. We're like, what? Because he would move it there. Then we'd be like, this car is crazy. I can't believe this. But he told us after. So that's that's the only thing I can think of off the top of my head. But that cracked me up. If you could learn the answer to one question about your future, what would the
+Reference: the song four on the album. And he would move the button with his fingers, which we couldn't see, because usually you like have to press the stereo up front. We're like, what? Cause he would move it there. Then we'd be like, this car is crazy. I can't believe this. But he told us after. So that's the only thing I can think of off the top of my head, but that cracked me up. If you could learn the answer to one question about your future, what would the quote
+WER: 4.35%
+
+File: session06_cut09.wav
+Whisper Output:  get the puck or the ball in the net and get it in the net more than your other team. Same thing with basketball, just kind of different variety. So I think that it's just common because a lot of them stem from like basic principles, which is why. The next one is, do you play sports video games? Which ones? Is playing the video game or sport more fun? Why?
+Reference: get the puck or the ball in the net and get it in the net more than your other team. Same thing with basketball, just kind of different variety. So I think that it's just common because a lot of them stem from like basic principles, which is why. The next one is, do you play sports video games? Which ones? Is playing the video game or sport more fun? Why?
+WER: 0.00%
+
+File: session06_cut03.wav
+Whisper Output:  have to use a smaller one of the smaller footballs because the like regular size ones are so big and I can't get my hand around it so I use like one of the smaller ones. I enjoy what other sports? Soccer? I don't I think it's fun I just think I'm so bad at it so I struggle with it but I do enjoy playing it. Yeah I'm trying to think
+Reference: I also have to use a smaller, one of the smaller footballs because the regular sized ones are so big and I can't get my hand around it so I use one of the smaller ones. I enjoy what other sports? Soccer. I think it's fun. I just think I'm so bad at it. So I struggle with it. But I do enjoy playing it. Um, yeah, I'm trying to think.
+WER: 11.27%
+
+File: session04_cut03.wav
+Whisper Output:  We actually ended up winning it the next year, but we got a bid to go to the Frozen Four. So that's like the last four standing teams make it. And it's typically the same four teams every year. Like with most sports, you see like the consistent teams that make it. So we were like the underdogs, new kids. But it was awesome because the Frozen Four was out in Vermont and we're in Minnesota. So the NCAA actually got us a chartered flight
+Reference: We actually ended up winning it the next year, but we got a bid to go to the Frozen Four. So that's like the last four standing teams make it. And it's typically the same four teams every year. Like with most sports, you see like the consistent teams that make it. So we were like the underdogs, new kids, but it was awesome because the Frozen Four was out in Vermont and we're in Minnesota. So the NCAA actually got us a chartered flight
+WER: 0.00%
+
+File: session06_cut06.wav
+Whisper Output:  Jumps, jumps included. But snowboarding was really hard to pick up for me. So I'd have to go with those two guys. I also think gymnastics though would be really hard as well. What defines a sport? Is fishing a sport? How about video game tournaments? I never thought about what defines a sport. I guess maybe it's not even a team activity all the time because it can be
+Reference: Jumps, jumps included. But snowboarding was really hard to pick up for me. So I'd have to go with those two guys. I also think gymnastics though would be really hard as well. What defines a sport? Is fishing a sport? How about video game tournaments? I never thought about what defines a sport. I guess maybe it's not even a team activity all the time because it can be
+WER: 0.00%
+
+File: session05_cut02.wav
+Whisper Output:  like it's there's something that's always rusting so it's never it's never taking a break it's always doing something but yeah I'd probably pick that one how should success be measured yeah I think in a multitude of ways I don't think success can be measured in just one criteria I think you have to look at it from different angles so for example if you take a kid trying to go to med school and you met
+Reference: Like it's there's something that's always resting. So it's never, it's never taken a break. It's always doing something. But yeah, I'd probably pick that one. How should success be measured? Yeah, I think in a multitude of ways, I don't think success can be measured in just one criteria. I think you have to look at it from different angles. So for example, if you take a kid trying to go to med school and you mentioned
+WER: 3.85%
+
+File: session07_cut10.wav
+Whisper Output:  angel. Then my other sister has like a reindeer and then Santa and snowmen. So that's cool. I'm not that talented though. Hopefully, maybe one day. I think another skill I think would be interesting to work on is crocheting, which I've heard is a little bit easier than knitting, but I'm not sure because I haven't done it. That's another skill
+Reference: Angel, and then my other sister has like a reindeer and then Santa and snowmen. So that's cool. I'm not that talented, though. Hopefully, maybe one day. I think another skill I think would be interesting to work on is crocheting, which I've heard is a little bit easier than knitting, but I'm not sure because I haven't done it. That's another skill.
+WER: 1.59%
+
+File: session03_cut01.wav
+Whisper Output:  All right, so yeah going back to EpiPens I do not want to use them at all because the needle situation again And I think like pressing the EpiPen and stabbing it in your leg just seems horrifying to me So that's another thing but when I went to study abroad in Iceland I had a car for a week, so I drove around Iceland by myself for a week and I
+Reference: all right so yeah going back to epi pens I do not want to use them at all because the needle situation again and I think like pressing the epi pen and stabbing it in your leg just seems horrifying to me so that's another thing but when I went to study abroad in Iceland I had a car for a week, so I drove around Iceland by myself for a week. And I went out to eat at a restaurant in this cute...
+WER: 16.67%
+
+File: session03_cut05.wav
+Whisper Output:  Doritos bag because I love those kind and I was throwing up in this bag as I'm driving to my hostel and I'm like this is horrible I am never doing this again so that was I should have used an EpiPen there probably but uh I just didn't want to I didn't feel the need but yeah that was my my time with that I was more careful with tree nuts in Europe than when I went for just my
+Reference: Doritos bag because I love those kind. And I was throwing up in this bag as I'm driving to my hostel. And I'm like, this is horrible. I am never doing this again. So that was, I should have used an EpiPen there probably, but, uh, I just didn't want to. I didn't feel the need, but yeah, that was my, my time with that. I was more careful with tree nuts in Europe than when I went for just my
+WER: 0.00%
+
+File: session07_cut11.wav
+Whisper Output:  I'd like to learn.
+Reference: I'd like to learn.
+WER: 0.00%
+
+File: session07_cut02.wav
+Whisper Output:  like to just set up a hammock and relax somewhere in the trees. I can put it in my backyard but there's I would prefer to go more in the woods I think because yeah it's just not as relaxing. Yeah those are my two those are two of my favorite places to relax. Tell me about a time you felt proud of the work you did. Oh I think it's gonna go back to that
+Reference: like to just set up a hammock and relax somewhere in the trees. I can put it in my backyard but there's I would prefer to go more in the woods I think because yeah it's just not as relaxing. But yeah those are my two those are two of my favorite places to relax. Tell me about a time you felt proud of the work you did. Oh I think it's gonna go back to that
+WER: 1.30%
+
+File: session01_cut12.wav
+Whisper Output:  cooler I think sometimes than what it was because it's the same thing day in and day out and a lot of times these experiments just weren't working so we would have to troubleshoot which was cool at times and then other times it just seemed like maybe there was a lack on our part with keeping things consistent so I think across the board the few lab mates I worked with it was just hard sometimes but it was cool experience and it was really cool research to do in an undergrad
+Reference: lot cooler, I think, sometimes than what it was because it's the same thing day in and day out. And a lot of times these experiments just weren't working. So we would have to troubleshoot, which was cool at times. And then other times it just seemed like maybe there was a lack on our part with keeping things consistent. So I think across the board, the few lab mates I worked with, it was just hard sometimes. But it was a cool experience. And it was really cool research to do in an undergrad.
+WER: 2.11%
+
+File: session03_cut08.wav
+Whisper Output:  Yeah, there's a lot of things.
+Reference: Yeah, there's a lot of things.
+WER: 0.00%
+
+File: session06_cut11.wav
+Whisper Output:  It's still really disturbing to think about.
+Reference: still really disturbing to think about.
+WER: 16.67%
+
+File: session01_cut06.wav
+Whisper Output:  but something gets blocked so it cannot be broken down by CYP3A4. So adding alcohol or caffeine binds on to the rufies or lumetrazepam, allowing it to stay in the system for a prolonged amount of time, which can cause insomnia or a blackout, essentially. So what we were looking at was how long is this time that is effective
+Reference: but something gets blocked so it cannot be broken down by CYP3A4. So adding alcohol or caffeine binds on to the roofies or plume trisopam, allowing it to stay in the system for a prolonged amount of time, which can cause insomnia or a blackout, essentially. so what we were looking at was how long is this time that is affecting and why is it happening with caffeine
+WER: 16.18%
+
+File: session02_cut05.wav
+Whisper Output:  There's like these boxes underneath the windows with an X inside of them. And the windows have blue shutters. It looks like a Disney, like a little Disney home. It's like cute. And it's a brewery actually, perhaps, maybe? Brunner? Looks like a bar or restaurant. There's a nice little porch out there where they have two lamps on the sides and
+Reference: There's like these boxes underneath the windows with an X inside of them. And the windows have blue shutters. It looks like a Disney, like a little Disney home. It's like cute. And it's a brewery actually, perhaps, maybe, Brunner. Looks like a bar or restaurant. There's a nice little porch out there where they have two lamps on the sides.
+WER: 1.64%
+
+File: session03_cut02.wav
+Whisper Output:  like, quaint little town in Iceland. And I had, so it was the year right after, it was my sophomore year that summer, so going into my junior year. So I knew about my tree nuts then. I hadn't had too many allergic reactions, so I just kind of stayed away from them. So I was still kind of like, eh, I'm fine. It's not a big deal. But I went out to eat and I got this salad and then probably just like, I don't remember. It was like a side salad with a dish.
+Reference: like quaint little town in Iceland. And I had, so it was the year right after it was my sophomore year that summer. So going into my junior year. So I knew about my tree nuts then I hadn't had too many allergic reactions. So I just kind of stayed away from them. So I was still kind of like, eh, I'm fine. It's not a big deal, but I went out to eat and I got this salad and then probably just like, I don't remember. It was like a side salad with a dish.
+WER: 0.00%
+
+File: session01_cut05.wav
+Whisper Output:  Flunitrazepam. So I guess to kind of back up a little bit, what happens is Flunitrazepam, if you're taking it for the correct reasons, or diazepam, it will go into your body and this enzyme CYP3A4 in your liver will break it down. When you add in caffeine or alcohol, what happens is this enzyme actually, I haven't done this in a bit,
+Reference: flunotrazepam. So I guess to kind of back up a little bit, what happens is flunotrazepam, if you're taking it for the correct reasons, or diazepam, it will go into your body and this enzyme CYP3A4 in your liver will break it down. When you add in caffeine or alcohol, what happens is this enzyme actually, I haven't done this in a bit,
+WER: 3.17%
+
+File: session02_cut11.wav
+Whisper Output:  Maybe that's the restaurant logo. And yeah, and on the inside there's orange curtains it looks like for the bottom windows, which is nice. And then it looks like there's a space to let in some light and then more curtains on the bottom.
+Reference: maybe that's the restaurant logo. And yeah, and then on the inside there's orange curtains it looks like for the bottom windows, which is nice. And then it looks like there's a space to let in some light, and then more curtains on the bottom.
+WER: 2.22%
+
+File: session05_cut09.wav
+Whisper Output:  Question B. Hmm. Well, I would not want it to be about death because then I think I would be focused on that the whole time. I think maybe I would ask like where I would end up living for the majority of my life in the future, not now, because I think right now it's Pittsburgh, but I'd be curious if I would stay in Pittsburgh or go somewhere else. So I feel like that would be the question I would ask. But yeah, I would stay away from
+Reference: Question B. Hmm. Well, I would not want it to be about death. Because then I think I would be focused on that the whole time. I think maybe I would ask, like, where I would end up living for the majority of my life. In the future. Not now. Because I think right now it's Pittsburgh. But I'd be curious if I would stay in Pittsburgh or go somewhere else. So I feel like that would be the question I would ask. But yeah, I would stay away from...
+WER: 0.00%
+
+File: session01_cut13.wav
+Whisper Output:  that. So I'm thankful for that. Sweet.
+Reference: that. So I'm thankful for that. Sweet.
+WER: 0.00%
+
+File: session02_cut08.wav
+Whisper Output:  the ones the restaurant. Oh and then the restaurant has a panel to showcase what meals or dishes they serve in a glass case. And they also have some nice plants which are just lovely. So they have window boxes with plants in them and then this nice plant that's right outside the overhead covering. And that overhead covering it's cute it looks like cedar shingles maybe.
+Reference: the one's the restaurant. Oh, and then the restaurant has a panel to showcase what meals or dishes they serve in a glass case. And they also have some nice plants, which are just lovely. So they have window boxes with plants in them and then this nice plant that's right outside the overhead covering. And that overhead covering, it's cute. It looks like cedar shingles, maybe.
+WER: 0.00%
+
+File: session06_cut08.wav
+Whisper Output:  Yeah, I'm gonna go with yes, those are sports. What do you think of, what do you think sports are common across almost, oh sorry, why do you think sports are common across almost all cultures present and past? Hmm, yeah I think there's just like these typical set roles and people, like they're really simple roles if you think about it. For example, hockey and soccer, the goal is to
+Reference: So yeah, I'm going to go with yes, those are sports. What do you think sports are common across almost... Oh, sorry. Why do you think sports are common across almost all cultures present and past? Hmm. Yeah, I think there's just like these typical set roles and people... Like they're really simple roles if you think about it. For example, hockey and soccer, the goal is...
+WER: 13.43%
+
+File: session06_cut01.wav
+Whisper Output:  Alright, which sports do you like to play? Oh, yes, I love playing ice hockey, roller hockey. I haven't played, I more played deck hockey than roller, but I think I would like roller too. I haven't played that competitively. I like rollerblading and I like hockey, so I'm pretty sure I'd like roller hockey. I like softball. I like to play basketball.
+Reference: All right, which sports do you like to play? Ooh, yes. I love playing ice hockey, roller hockey. I haven't played, I more play deck hockey than roller, but I think I would like roller too. I haven't played that competitively. I like rollerblading, and I like hockey, so I'm pretty sure I'd like roller hockey. I like softball. I like to play basketball. I'm not good at it, but it's fun.
+WER: 16.67%
+
+File: session04_cut04.wav
+Whisper Output:  to Vermont so it was such a cool experience I've never had one like this before but we had a plane all to ourselves and it had like our three coaches our athletic director and then probably like I think my coach's husband her two sons came along and then basically our team but it's a small tiny it wasn't tiny but it was a small plane and I just remember we were on the
+Reference: to Vermont, so it was such a cool experience. I've never had one like this before, but we had a plane all to ourselves, and it had like our three coaches, our athletic director, and then probably like, I think my coach's husband, her two sons came along, and then basically our team. But it's this small, tiny, it wasn't tiny, but it was a small plane. And I just remember we were on
+WER: 2.70%
+
+File: session05_cut05.wav
+Whisper Output:  this, yeah, it's really going to suck. Like it's going to be horrible. And that's just not what you want to hear when you're a patient. So after that, he kind of let the nurse talk to him about, talk to them about what was going to happen. So I think just to showcase their success shouldn't just be measured on one area. Okay, so the next one is what is your guilty pleasure? Yeah, um, I'm gonna have to go. I
+Reference: this. Yeah, it's really going to suck. Like it's going to be horrible. And that's just not what you want to hear when you're a patient. So after that, he kind of let the nurse talk to him about, talk to them about what was going to happen. So I think just to showcase there, success shouldn't just be measured on one area. Okay. So the next one is what is your guilty pleasure? Yeah. I'm going to have to go. I
+WER: 4.88%
+
+File: session04_cut07.wav
+Whisper Output:  there was a big Ben and Jerry's store there that was really cool to go visit. So we did that we got food from there got to explore Mount Pelier which is the capital so it was just really neat to see all of that so that was a cool experience and then the next year after that we ended up making the Frozen Four again and that year was in Minnesota so we didn't get to charter a flight anywhere sadly but that was
+Reference: there was a big Ben and Jerry's store there that was really cool to go visit. So we did that. We got food from there, got to explore, um, Mount Pellier, which is the capital. So it was just really neat to see all of that. So that was a cool experience. And then the next year after that, we ended up making the frozen four again. And, uh, that year was in Minnesota, so we didn't get to charter flight anywhere, sadly, but that was fun.
+WER: 5.75%
+
+File: session07_cut07.wav
+Whisper Output:  I broke my ankle my freshman year, so I'm the only one that can sit and give speeches. Everybody else has to stand. But I remember this kid in my class basically said that my whole speech was fake after and I was like, I don't know, I just tried my best. I don't know what to tell you. And my professor was like, that's not how you approach things like this. And I think he felt bad for me because I broke my ankle, but I just, it was so,
+Reference: I broke my ankle my freshman year. So I'm the only one that can sit and give speeches. Everybody else has to stand. But I remember this kid in my class basically said that my whole speech was fake after. And I was like, I don't know. Like I just tried my best. I don't know what to tell you. And my professor was like, that's not how you approach things like this. And I think he felt bad for me because I broke my ankle, but I just, it was,
+WER: 2.20%
+
+File: session01_cut07.wav
+Whisper Output:  and alcohol. And then we also looked at the intermediate of alcohol, which is acetaldehyde. And so that's just when your body is breaking down alcohol, it breaks down into acetaldehyde as well. So, yeah, we were looking at those three substances in mix with the drug. What we would do is we would take the drug and put it in with the enzyme, which would break it down into the HPLC, and we would get a little graph
+Reference: and alcohol. And then we also looked at the intermediate of alcohol, which is acetaldehyde. And so that's just when your body is breaking down alcohol, it breaks down into acetaldehyde as well. So yeah, we were looking at those three substances in mix with the drug. What we would do is we would take the drug and put it in with the enzyme, which would break it down into the HPLC, and we would get a little graph
+WER: 0.00%
+
+File: session06_cut04.wav
+Whisper Output:  What else? What other classic sports? I like bocce ball. I don't know if we're gonna call out a sport. That's fun. Oh, volleyball. I love volleyball. So sand or floor. I love that. What is the hardest sport to excel at? You know, the first thing that comes to mind for this for me is actually snowboarding. And the only reason I say
+Reference: What else? What other classic sports? I like bocce ball. I don't know if we're going to call that a sport. That's fun. Oh, volleyball. I love volleyball. So, sand or floor. I love that. What is the hardest sport to excel at? You know, the first thing that comes to mind for this, for me, is actually snowboarding. And the only reason I say that is because I love snowboarding.
+WER: 12.68%
+
+File: session02_cut07.wav
+Whisper Output:  orange color. And then off to the side of the tables to the left there's this nice little archway that's there. It looks really cute. I'm assuming it goes somewhere and above that it looks like a different home is above there. I mean it still has the windows with the box and the X inside but the shutters are a different color and the windows also look slightly different. So I think
+Reference: orange color. And then off to the side of the tables to the left there's this nice little archway that's there. It looks really cute. I'm assuming it goes somewhere and above that it looks like a different home is above there. I mean it still has the windows with the box and the X inside but the shutters are a different color and the windows also look slightly different. So I think
+WER: 0.00%
+
+File: session06_cut07.wav
+Whisper Output:  solo. So where you're competing for something. So yeah I feel like if you're competing for something then fishing is a sport. You're competing to get the largest fish or something like that. Video game tournaments, personally I wouldn't want to say they are but I think they are to an extent. Yeah like you're competing for something and it might not be active but like you're still doing your best to win so
+Reference: solo. So where you're competing for something. So yeah, I feel like if you're competing for something, then fishing is a sport. You're competing to get the largest fish or something like that. Video game tournaments. Personally, I wouldn't want to say they are, but I think they are to an extent. Yeah. Like you're competing for something and it might not be active, but like you're still doing your best to win. So.
+WER: 0.00%
+
+File: session04_cut05.wav
+Whisper Output:  runway and we would just like you don't go through any security you just walk through a metal detector because it's your team that's going on this chartered flight and we walked up the plane and it was two seats per side and I remember they would this our flight attendant would come around and give us candy like she had all these candies she would just give us and it was amazing and all these drinks and she's like you can take as much as you want I'm like oh thank you but that was
+Reference: runway and we would just you don't go through any security you just walk through a metal detector because it's your team that's going on this chartered flight and we walked up the plane and it was two seats per side and I remember they would our flight attendant would come around and give us candy, like she had all these candies she would just give us and it was amazing and all these drinks and she's like you can take as much as you want and I'm like oh thank you but that was
+WER: 3.16%
+
+File: session05_cut10.wav
+Whisper Output:  death or anything related to that because then I think you're just going to get fixated on that and it's just going to be all downhill because that's all you'll think about the whole time. Has anyone ever saved your life? Yes, let's save this one when we come back after this break.
+Reference: death or anything related to that because then I think you're just going to get fixated on that and it's just going to be all downhill because that's all you'll think about the whole time. Has anyone ever saved your life? Yes, let's save this one when we come back after this break.
+WER: 0.00%
+
+File: session07_cut05.wav
+Whisper Output:  Tell me about a time when you felt very nervous. Yeah, when I had to give that presentation to all of my classmates, it had to be between 30 and 40 minutes. And it's just nerve wracking to give presentations like that. Like I don't enjoy public speaking. So actually, there I took a public speaking class in college my freshman year.
+Reference: Tell me about a time when you felt very nervous. Yeah, when I had to give that presentation to all of my classmates. It had to be between 30 and 40 minutes. And it's just nerve-wracking to give presentations like that. Like, I don't enjoy public speaking. So actually, I took a public speaking class in college my freshman year.
+WER: 5.00%
+
+File: session05_cut01.wav
+Whisper Output:  What word or saying from the past should come back?
+Reference: all right what word or saying from the past do you think should come back um I don't know if it's ever gone away but uh one saying that I think is interesting is rust never sleeps I think that's what it is yeah I think it's on a Johnny Cash album maybe or Neil Young one of their albums but um I just think it's an interesting saying because it's basically saying like rust is continuous all the time
+WER: 87.50%
+
+File: session02_cut01.wav
+Whisper Output:  Do we want to try to do five minutes per picture? Okay. Yep. Alright, so the picture I'm looking at looks to be inside an airport. It's really packed. There's a lot of people.
+Reference: Do we want to try to do five minutes per picture? Okay. Yep. Alright, so the picture I'm looking at looks to be inside an airport. It's really packed. There's a lot of people and a lot of long lines. So I'm guessing,
+WER: 20.93%
+
+File: session03_cut06.wav
+Whisper Output:  I
+Reference: time out there just because I was nervous. I, it's not a good time having an allergic reaction. So I was like, I don't want to deal with this, but, and then actually I forget. Oh, we got this pesto pasta and it was when we were doing trivia night as a team, a Facebook team. And I ate it before we jumped on this trivia night call. And I remember I was like on it and I didn't feel good. Like, it wasn't anything bad, but, like, my throat was hurting. I felt like I could throw up. But I ended up snoring.
+WER: 99.04%
+
+File: session01_cut09.wav
+Whisper Output:  And we moved from a commercial enzyme to an enzyme that my professor actually worked with a professor from Vanderbilt to get. So we knew what the enzyme was made of. Just because it was non, what was it? We didn't know everything that was in the enzyme that we got from the store, or store if you want to say. So we were rerunning experiments just to verify since we actually knew
+Reference: And we moved from a commercial enzyme to an enzyme that my professor actually worked with a professor from Vanderbilt to get. So we knew what the enzyme was made of just because it was non. We didn't know everything that was in the enzyme that we got from the store or store, if you want to say. But so we were rerunning experiments just to verify since we actually knew.
+WER: 5.63%
+
+File: session04_cut02.wav
+Whisper Output:  and was like a losing record. So we lost more games than we won. And she came and she like completely turned the program around where we became like a winning season. So you win more games than you lose. And then the first year I got there, we ended up going to the Frozen Four, which was amazing. And so that was a really cool experience because we never won a MIAC championship and we didn't win the MIAC that year.
+Reference: was like a losing record. So we lost more games than we won. And she came and she like completely turned the program around where we became like a winning season. So you win more games than you lose. And then the two year, the first year I got there, we ended up going to the Frozen Four, which was amazing. And so that was a really cool experience because we never won a MIAC championship and we didn't win the MIAC that year.
+WER: 4.76%
+
+File: session01_cut03.wav
+Whisper Output:  create scenarios where date rape drugs were taking effect. So a lot of times folks may have mixed them with caffeine or alcohol and we wanted to look at what that interaction was that was going on there with that. So we used HPLC, which is high performance liquid chromatography, and basically what we did is we started with our control. So our control
+Reference: to create scenarios where date rape drugs were taking effect. So a lot of times folks may have mixed them with caffeine or alcohol and we wanted to look at what that interaction was that was going on there with that. So we used HPLC, which is high performance liquid chromatography. And basically what we did is we started with our control. So our control
+WER: 1.54%
+
+File: session04_cut06.wav
+Whisper Output:  really cool experience and it made me never want to fly like coach or like any public flights again I was like I just want a chartered flight from now on so that was that was a cool experience but it was nice because then we went to Vermont and we all got on a bus and we went out to Burlington Vermont which is a really cool city small town out there I think so I know Vermont is where Ben and Jerry's
+Reference: a really cool experience and it made me never want to fly like coach or like any public flights again I was like I just want um a chartered flight from now on so that was that was a cool experience but it was nice because then we went to Vermont and we all got on a bus and we went out to Burlington Vermont which is a really cool uh city small town out there I think so I know Vermont is where Ben and Jerry's is from. I don't know if it's from Burlington,
+WER: 12.50%
+
+File: session07_cut09.wav
+Whisper Output:  winter I kind of stopped actually now that it's gotten warmer but my grandma actually taught me that so that was I don't know I mean I feel like it's a skill but yeah my grandma taught me that she actually made all she knitted all of our stockings so we all have stockings with our names on it she knitted different like for my brothers there's a Christmas tree for mine there's a little girl opening a gift my sister has a wreath one of my other sisters has a
+Reference: the winter. I kind of stopped actually now that it's gotten warmer, but my grandma actually taught me that. So that was, I don't know. I mean, I feel like it's a skill, but yeah, my grandma taught me that. She actually made all, she knitted all of our stockings. So we all have stockings with our names on it and she knitted different, like for my brothers, there's a Christmas tree. For mine, there's a little girl opening a gift. My sister has a wreath. One of my other sisters has a
+WER: 2.15%
+
+File: session02_cut10.wav
+Whisper Output:  And the chairs look black with maybe some metal and then wood on top. And they look mesh, almost like those weather resistant chairs which just can take any kind of weather out there. So easy to clean if there's rain on there or wipe down. Yeah, and then there's that sign again. I think it's Schwoz Briner with a little person up there maybe.
+Reference: And the chairs look black with maybe some metal and then wood on top. And they look mesh, almost like those weather-resistant chairs, which just can take any kind of weather out there. So easy to clean if there's rain on there or wipe down. Yeah, and then there's that sign again. I think it's Schwoz Briner with the little person up there maybe in a little hat. So
+WER: 11.59%
+
+File: session05_cut07.wav
+Whisper Output:  And it was back in the day, so we're all sitting in the back because we're younger. And it was when those, like the steering wheel buttons just came out where you could change the song. And he had us all in the back and he's like, this car is so brand new and it's so nice and classy. It even reads my mind. So I can think the song that I want to play next. And we're like, no, it doesn't, dad. Like, that's crazy. And he'd be like, no, look, look, I'm thinking in my head, I want to play, um,
+Reference: And it was back in the day. So we're all sitting in the back because we're younger. And it was when those, like the steering wheel buttons just came out where you could change the song. And he had us all in the back and he's like, this car is so brand new and it's so nice and classy. It even reads my mind. So I can think the song that I want to play next. And we're like, no, it doesn't dad. Like that's crazy. And he'd be like, no, look, look, I'm thinking in my head. I want to play...
+WER: 0.98%
+
+File: session06_cut02.wav
+Whisper Output:  I typically play like horse or pig. I have played one on one, one time with this kid, but he was like a good basketball player and I was like, this is not fun or fair. So that was, that was hard for me. I like paddle ball. I enjoy playing tennis, which are similar. I enjoy playing ping pong. So all of those guys are really similar. I enjoy throwing a football. I've never really played.
+Reference: I typically play like horse or pig. I have played one-on-one one time with this kid, but he was like a good basketball player, and I was like, this is not fun or fair. So that was hard for me. I like paddle ball. I enjoy playing tennis, which are similar. I enjoy playing ping pong, so all those guys are really similar. I enjoy throwing a football I've never really played.
+WER: 8.33%
+
+File: session04_cut08.wav
+Whisper Output:  fun too because you just got to, we went to this other school's campus for like the banquet and everything and it was just really fancy so that was a cool time. But yeah I will never forget that charter flight and how amazing that was going like having that experience to get on a flight like that which was really really neat so.
+Reference: fun too because you just got to we went to this other school's campus for like the banquet and everything and it was just really fancy so that was a cool time but yeah I will never forget that charter flight and how amazing that was going like having that experience to get on a flight like that which was really really neat so
+WER: 0.00%
+
+==============================
+Processed files: 64
+Average Whisper WER: 7.67%
+==============================
+
+(.venv) PS E:\ASR> 
