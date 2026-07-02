@@ -55,10 +55,10 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 
 | Dataset | Link |
 |---|---|
-| Europarl | https://www.statmt.org/europarl/ |
-| CoVoST-2 | https://huggingface.co/datasets/facebook/covost2 |
-| WMT News | https://huggingface.co/datasets/wmt/wmt19 |
-| OPUS-100 | https://opus.nlpl.eu/opus-100.php |
+| LibriSpeech | https://huggingface.co/datasets/openslr/librispeech_asr |
+| Common Voice | https://www.kaggle.com/datasets/mozillaorg/common-voice |
+| FLEURS | https://huggingface.co/datasets/google/fleurs |
+| GigaSpeech | http://huggingface.co/datasets/speechcolab/gigaspeech |
 
 # Installation
 ## Clone Repository
