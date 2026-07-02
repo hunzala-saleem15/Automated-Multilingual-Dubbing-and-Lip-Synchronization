@@ -76,7 +76,10 @@ https://huggingface.co/NidaIlyas/My-MT-Models
 
 ## Automatic Speech Recognition
 The models and the checkpoints are available here:
-https://huggingface.co/NidaIlyas/My-MT-Models
+https://huggingface.co/NidaIlyas/mt_lmt-finetuned
+https://huggingface.co/NidaIlyas/mt_lmt-finetuned-en-zh-balanced
+https://huggingface.co/NidaIlyas/mt_lmt-lora-en-hi
+https://huggingface.co/NidaIlyas/mt_lmt-finetuned-en-ar-fast
 
 # Team Members
 
