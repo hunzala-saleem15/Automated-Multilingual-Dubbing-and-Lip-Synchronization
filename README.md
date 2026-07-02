@@ -53,6 +53,18 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 | LjSpeech | https://www.openslr.org/19/ |
 | CSS10 | https://github.com/Kyubyong/css10 |
 | Common Voice | https://commonvoice.mozilla.org/en |
+
+---
+
+## Automatic Speech Recognition Datasets
+
+| Dataset | Link |
+|---|---|
+| Europarl | https://www.statmt.org/europarl/ |
+| CoVoST-2 | https://huggingface.co/datasets/facebook/covost2 |
+| WMT News | https://huggingface.co/datasets/wmt/wmt19 |
+| OPUS-100 | https://opus.nlpl.eu/opus-100.php |
+
 # Installation
 ## Clone Repository
 - git clone https://github.com/hunzala-saleem15/Automated-Multilingual-Dubbing-and-Lip-Synchronization.git
