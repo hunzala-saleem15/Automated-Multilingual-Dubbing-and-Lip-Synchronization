@@ -43,8 +43,6 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 | WMT News | https://huggingface.co/datasets/wmt/wmt19 |
 | OPUS-100 | https://opus.nlpl.eu/opus-100.php |
 
----
-
 ## TTS Datasets
 
 | Dataset | Link |
@@ -53,8 +51,6 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 | LjSpeech | https://www.openslr.org/19/ |
 | CSS10 | https://github.com/Kyubyong/css10 |
 | Common Voice | https://commonvoice.mozilla.org/en |
-
----
 
 ## Automatic Speech Recognition Datasets
 
