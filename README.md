@@ -63,7 +63,11 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 The models and the checkpoints are available here:
 https://huggingface.co/hunzala-saleem/My-TTS-Models
 
-## Machine Translatio
+## Machine Translation
+The models and the checkpoints are available here:
+https://huggingface.co/NidaIlyas/My-MT-Models
+
+## Automatic Speech Recognition
 The models and the checkpoints are available here:
 https://huggingface.co/NidaIlyas/My-MT-Models
 
