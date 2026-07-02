@@ -23,7 +23,7 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 
 | Base Papers | Titles |
 |---|---|
-| Automatic Speech Recognition | *LipGER: Visually-Conditioned Generative Error Correction for Robust Automatic Speech Recognition* |
+| Automatic Speech Recognition | *wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations* |
 | Machine Translation | *NiuTrans.LMT: Toward Inclusive and Scalable Multilingual Machine Translation with LLMs* |
 | Text To Speech | *XTTS: a Massively Multilingual Zero-Shot Text-to-Speech Model* |
 | Lip Synchronisation | *Seeing what you said: Talking face generation guided by a lip reading expert.* |
