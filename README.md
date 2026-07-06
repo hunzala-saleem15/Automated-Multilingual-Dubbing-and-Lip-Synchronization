@@ -49,7 +49,7 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 | LibriTTS | https://www.openslr.org/60/ |
 | LjSpeech | https://keithito.com/LJ-Speech-Dataset/ |
 | CSS10 | https://github.com/Kyubyong/css10 |
-| Common Voice | https://commonvoice.mozilla.org/en |
+| Common Voice | https://www.kaggle.com/datasets/mozillaorg/common-voice |
 
 ## Automatic Speech Recognition Datasets
 
