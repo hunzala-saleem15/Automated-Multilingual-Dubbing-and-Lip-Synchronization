@@ -47,7 +47,7 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 | Dataset | Link |
 |---|---|
 | LibriTTS | https://www.openslr.org/60/ |
-| LjSpeech | https://www.openslr.org/19/ |
+| LjSpeech | https://keithito.com/LJ-Speech-Dataset/ |
 | CSS10 | https://github.com/Kyubyong/css10 |
 | Common Voice | https://commonvoice.mozilla.org/en |
 
