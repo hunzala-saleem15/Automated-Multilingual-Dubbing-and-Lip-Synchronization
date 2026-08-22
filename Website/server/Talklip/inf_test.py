@@ -1,0 +1,568 @@
+import torch
+import platform
+import math
+import numpy as np
+import os, cv2, argparse, subprocess
+
+from tqdm import tqdm
+from torch import nn
+from torch.nn import functional as F
+from argparse import Namespace
+from torch.utils.data import DataLoader
+from python_speech_features import logfbank
+from fairseq import checkpoint_utils, utils, tasks
+from fairseq.dataclass.utils import convert_namespace_to_omegaconf, populate_dataclass, merge_with_parent
+from scipy.io import wavfile
+from utils.data_avhubert import collater_audio, emb_roi2im
+
+from models.talklip import TalkLip
+
+
+def build_encoder(hubert_root, path='config.yaml'):
+
+    from omegaconf import OmegaConf
+    cfg = OmegaConf.load(path)
+
+    import sys
+    sys.path.append(hubert_root)
+    from avhubert.hubert_asr import HubertEncoderWrapper, AVHubertSeq2SeqConfig
+
+    # cfg = merge_with_parent(AVHubertSeq2SeqConfig(), cfg)
+    arg_overrides = {
+        "dropout": cfg.dropout,
+        "activation_dropout": cfg.activation_dropout,
+        "dropout_input": cfg.dropout_input,
+        "attention_dropout": cfg.attention_dropout,
+        "mask_length": cfg.mask_length,
+        "mask_prob": cfg.mask_prob,
+        "mask_selection": cfg.mask_selection,
+        "mask_other": cfg.mask_other,
+        "no_mask_overlap": cfg.no_mask_overlap,
+        "mask_channel_length": cfg.mask_channel_length,
+        "mask_channel_prob": cfg.mask_channel_prob,
+        "mask_channel_selection": cfg.mask_channel_selection,
+        "mask_channel_other": cfg.mask_channel_other,
+        "no_mask_channel_overlap": cfg.no_mask_channel_overlap,
+        "encoder_layerdrop": cfg.layerdrop,
+        "feature_grad_mult": cfg.feature_grad_mult,
+    }
+    if cfg.w2v_args is None:
+        state = checkpoint_utils.load_checkpoint_to_cpu(
+            cfg.w2v_path, arg_overrides
+        )
+        w2v_args = state.get("cfg", None)
+        if w2v_args is None:
+            w2v_args = convert_namespace_to_omegaconf(state["args"])
+        cfg.w2v_args = w2v_args
+    else:
+        state = None
+        w2v_args = cfg.w2v_args
+        if isinstance(w2v_args, Namespace):
+            cfg.w2v_args = w2v_args = convert_namespace_to_omegaconf(
+                w2v_args
+            )
+
+    w2v_args.task.data = cfg.data
+    task_pretrain = tasks.setup_task(w2v_args.task)
+
+    task_pretrain.load_state_dict(torch.load('task_state.pt'))
+
+    encoder_ = task_pretrain.build_model(w2v_args.model)
+    encoder = HubertEncoderWrapper(encoder_)
+    if state is not None and not cfg.no_pretrained_weights:
+        # set strict=False because we omit some modules
+        del state['model']['mask_emb']
+        encoder.w2v_model.load_state_dict(state["model"], strict=False)
+
+    encoder.w2v_model.remove_pretraining_modules()
+    return encoder, encoder.w2v_model.encoder_embed_dim
+
+
+def parse_filelist(file_list, save_root, check):
+
+    with open(file_list) as f:
+        lines = f.readlines()
+
+    if check:
+        sample_paths = []
+        for line in lines:
+            line = line.strip().split()[0]
+            if not os.path.exists('{}/{}.mp4'.format(save_root, line)):
+                sample_paths.append(line)
+    else:
+        sample_paths = [line.strip().split()[0] for line in lines]
+
+    return sample_paths
+
+
+def resolve_data_root(path, fallback_dir=None):
+    if not path:
+        return path
+
+    candidates = []
+    expanded_path = os.path.abspath(os.path.expanduser(path))
+    candidates.append(expanded_path)
+
+    base_name = os.path.basename(os.path.normpath(expanded_path))
+    if base_name:
+        candidates.append(os.path.join(os.path.dirname(__file__), 'data', base_name))
+        candidates.append(os.path.join(os.path.dirname(__file__), base_name))
+
+    if fallback_dir:
+        candidates.append(os.path.join(os.path.dirname(__file__), 'data', fallback_dir))
+        candidates.append(os.path.join(os.path.dirname(__file__), fallback_dir))
+
+    for candidate in candidates:
+        if candidate and os.path.exists(candidate):
+            return candidate
+
+    return expanded_path
+
+
+class Talklipdata(object):
+
+    def __init__(self, args):
+        self.data_root = resolve_data_root(args.video_root, 'main')
+        self.bbx_root = resolve_data_root(args.bbx_root, 'lrs2_bbx')
+        self.audio_root = resolve_data_root(args.audio_root, 'lrs2_audio')
+        self.ffmpeg = getattr(args, 'ffmpeg', 'ffmpeg')
+        self.samples = []
+
+        for sample in parse_filelist(args.filelist, args.save_root, args.check):
+            video_path = os.path.join(self.data_root, '{}.mp4'.format(sample))
+            wav_path = os.path.join(self.audio_root, '{}.wav'.format(sample))
+            if os.path.exists(video_path):
+                self.samples.append(sample)
+            else:
+                print('Skipping sample {} (video={})'.format(
+                    sample,
+                    os.path.exists(video_path)
+                ))
+
+        self.stack_order_audio = 4
+        self.crop_size = 96
+
+    def prepare_window(self, window):
+        # T x 3 x H x W
+        x = window / 255.
+        x = x.permute((0, 3, 1, 2))
+
+        return x
+
+    def croppatch(self, images, bbxs):
+        h = images.shape[1]
+        w = images.shape[2]
+
+        patch = np.zeros(
+            (images.shape[0], self.crop_size, self.crop_size, 3),
+            dtype=np.float32
+        )
+
+        for i, bbx in enumerate(bbxs):
+            if bbx is None:
+                continue
+
+            bbx = np.asarray(bbx, dtype=np.float32).reshape(-1)
+
+            if bbx.size < 4:
+                continue
+
+            x0, y0, x1, y1 = [int(v) for v in bbx[:4]]
+
+            # correct width/height clipping
+            x0 = max(0, min(x0, w - 1))
+            x1 = max(x0 + 1, min(x1, w))
+
+            y0 = max(0, min(y0, h - 1))
+            y1 = max(y0 + 1, min(y1, h))
+
+            crop = images[i, y0:y1, x0:x1, :]
+
+            if crop.size == 0:
+                continue
+
+            patch[i] = cv2.resize(
+                crop,
+                (self.crop_size, self.crop_size)
+            )
+
+        return patch
+
+    def ensure_bbxs(self, bbxs, volume):
+        if bbxs is None:
+            return np.zeros((volume, 4), dtype=np.float32)
+
+        bbxs = np.asarray(bbxs, dtype=np.float32)
+        if bbxs.ndim == 1:
+            bbxs = bbxs.reshape(1, -1)
+        if bbxs.size == 0:
+            return np.zeros((volume, 4), dtype=np.float32)
+
+        if bbxs.shape[0] < volume:
+            padded = np.zeros((volume, 4), dtype=np.float32)
+            padded[:bbxs.shape[0]] = bbxs[:bbxs.shape[0]]
+            if bbxs.shape[0] > 0:
+                padded[bbxs.shape[0]:] = bbxs[-1]
+            bbxs = padded
+        elif bbxs.shape[0] > volume:
+            bbxs = bbxs[:volume]
+
+        if bbxs.shape[1] < 4:
+            padded = np.zeros((bbxs.shape[0], 4), dtype=np.float32)
+            padded[:, :bbxs.shape[1]] = bbxs
+            bbxs = padded
+
+        return bbxs
+
+    def audio_visual_align(self, audio_feats, video_feats):
+        diff = len(audio_feats) - len(video_feats)
+        if diff < 0:
+            audio_feats = np.concatenate(
+                [audio_feats, np.zeros([-diff, audio_feats.shape[-1]], dtype=audio_feats.dtype)])
+        elif diff > 0:
+            left = diff // 2
+            right = diff - left
+            audio_feats = audio_feats[left:-right]
+            # audio_feats = audio_feats[:-diff]
+        return audio_feats
+
+    def fre_audio(self, wav_data, sample_rate):
+        def stacker(feats, stack_order):
+            """
+            Concatenating consecutive audio frames, 4 frames of tf forms a new frame of tf
+            Args:
+            feats - numpy.ndarray of shape [T, F]
+            stack_order - int (number of neighboring frames to concatenate
+            Returns:
+            feats - numpy.ndarray of shape [T', F']
+            """
+            feat_dim = feats.shape[1]
+            if len(feats) % stack_order != 0:
+                res = stack_order - len(feats) % stack_order
+                res = np.zeros([res, feat_dim]).astype(feats.dtype)
+                feats = np.concatenate([feats, res], axis=0)
+            feats = feats.reshape((-1, stack_order, feat_dim)).reshape(-1, stack_order*feat_dim)
+            return feats
+
+        audio_feats = logfbank(wav_data, samplerate=sample_rate).astype(np.float32)  # [T, F]
+        audio_feats = stacker(audio_feats, self.stack_order_audio)  # [T/stack_order_audio, F*stack_order_audio]
+        return audio_feats
+
+    def load_video(self, path):
+        cap = cv2.VideoCapture(path)
+        imgs = []
+        while True:
+            ret, frame = cap.read()
+            if ret:
+                imgs.append(frame)
+            else:
+                break
+        cap.release()
+        return imgs
+
+    def ensure_audio_file(self, video_path, wav_path):
+        if os.path.exists(wav_path):
+            return wav_path
+
+        os.makedirs(os.path.dirname(wav_path), exist_ok=True)
+        cmd = [
+            self.ffmpeg,
+            '-y',
+            '-i', video_path,
+            '-vn',
+            '-ac', '1',
+            '-ar', '16000',
+            '-f', 'wav',
+            wav_path,
+        ]
+        completed = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if completed.returncode != 0:
+            raise FileNotFoundError('Could not extract audio from {} to {}'.format(video_path, wav_path))
+        return wav_path
+
+    def __len__(self):
+        return len(self.samples)
+
+    def __getitem__(self, idx):
+        """
+
+        Args:
+            idx:
+
+        Returns:
+            x (N*6*96*96): concatenation of N identity images (different) and mask images (same)
+            spectrogram (N_a * 321): spectrogram of whole wav
+            idAudio ((N*7)): matched audio index
+            y (N*3*96*96): ground truth images
+        """
+        sample = self.samples[idx]
+
+        video_path = '{}/{}.mp4'.format(self.data_root, sample)
+        bbx_path = '{}/{}.npy'.format(self.bbx_root, sample)
+        wav_path = '{}/{}.wav'.format(self.audio_root, sample)
+
+        try:
+            bbxs = np.load(bbx_path)
+        except FileNotFoundError:
+            bbxs = np.zeros((5, 4), dtype=np.float32)
+
+        imgs = np.array(self.load_video(video_path))
+        volume = len(imgs)
+        bbxs = self.ensure_bbxs(bbxs, volume)
+
+        wav_path = self.ensure_audio_file(video_path, wav_path)
+        sampRate, wav = wavfile.read(wav_path)
+        spectrogram = self.fre_audio(wav, sampRate)
+        spectrogram = torch.tensor(spectrogram) # T'* F
+        with torch.no_grad():
+            spectrogram = F.layer_norm(spectrogram, spectrogram.shape[1:])
+
+        pickedimg = list(range(volume))
+        poseImgRaw = np.array(pickedimg)
+        poseImg = self.croppatch(imgs[poseImgRaw], bbxs[poseImgRaw])
+        idImgRaw = poseImgRaw.copy()
+        idImg = self.croppatch(imgs[idImgRaw], bbxs[idImgRaw])
+
+        poseImg = torch.tensor(poseImg, dtype=torch.float32)  # T*3*96*96
+        idImg = torch.tensor(idImg, dtype=torch.float32)  # T*3*96*96
+
+        spectrogram = self.audio_visual_align(spectrogram, imgs)
+
+        pose_inp = self.prepare_window(poseImg)
+        gt = pose_inp.clone()
+        # mask off the bottom half
+        pose_inp[:, :, pose_inp.shape[2] // 2:] = 0.
+
+        id_inp = self.prepare_window(idImg)
+        inp = torch.cat([pose_inp, id_inp], dim=1)
+
+        pickedimg, bbxs = torch.tensor(pickedimg), torch.tensor(bbxs)
+
+        imgs = torch.from_numpy(imgs)
+
+        return inp, spectrogram, gt, volume, pickedimg, imgs, bbxs, sample
+
+
+def collate_fn(dataBatch):
+    """
+
+    Args:
+        dataBatch:
+
+    Returns:
+        xBatch: input T_sum*6*96*96, concatenation of all video chips in the time dimension
+        yBatch: output T_sum*3*96*96
+        inputLenBatch: bs
+        inputLenRequire: bs
+        audioBatch: bs*T'*321 or T_sum*1*80*16
+        idAudio: (bs*N*7)
+        targetBatch: bs*L*1
+        videoBatch: bs*T''*3*96*96
+        pickedimg: (bs*N*5)
+        videoBatch: bs*T''*3*96*96
+    """
+
+    xBatch = torch.cat([data[0] for data in dataBatch], dim=0)
+    yBatch = torch.cat([data[2] for data in dataBatch], dim=0)
+    inputLenBatch = [data[3] for data in dataBatch]
+
+    audioBatch, padding_mask = collater_audio([data[1] for data in dataBatch], max(inputLenBatch))
+
+    audiolen = audioBatch.shape[2]
+    idAudio = torch.cat([data[4] + audiolen * i for i, data in enumerate(dataBatch)], dim=0)
+
+    pickedimg = [data[4] for data in dataBatch]
+    videoBatch = [data[5] for data in dataBatch]
+    bbxs = [data[6] for data in dataBatch]
+    names = [data[7] for data in dataBatch]
+
+    return xBatch, audioBatch, idAudio, yBatch, padding_mask, pickedimg, videoBatch, bbxs, names
+
+
+def get_gpu_memory_map():
+    result = subprocess.check_output(
+        [
+            'nvidia-smi', '--query-gpu=memory.used',
+            '--format=csv,nounits,noheader'
+        ], encoding='utf-8')
+    gpu_memory = [int(x) for x in result.strip().split('\n')]
+    gpu_memory_map = dict(zip(range(len(gpu_memory)), gpu_memory))
+    return gpu_memory_map
+
+
+def get_video_fps(video_path, default_fps=25.0):
+    """Try to read original FPS, fall back to 25."""
+    try:
+        cap = cv2.VideoCapture(video_path)
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        cap.release()
+        if fps is not None and fps > 1.0:
+            return float(fps)
+    except Exception:
+        pass
+    return default_fps
+
+
+def model_synt(test_data_loader, device, model, args):
+    model.eval()
+
+    with torch.no_grad():
+        for inps, spectrogram, idAudio, gt, padding_mask, pickedimg, imgs, bbxs, names in tqdm(test_data_loader):
+            inps, gt = inps.to(device), gt.to(device)
+            spectrogram = spectrogram.to(device)
+            padding_mask = padding_mask.to(device)
+
+            sample = {
+                'net_input': {
+                    'source': {'audio': spectrogram, 'video': None},
+                    'padding_mask': padding_mask,
+                    'prev_output_tokens': None
+                },
+                'target_lengths': None,
+                'ntokens': None,
+                'target': None
+            }
+
+            # Inference
+            prediction, enc_audio = model(sample, inps, idAudio, spectrogram.shape[0])
+
+            print("=" * 60)
+            print("Prediction shape:", prediction.shape)
+            print("Prediction dtype:", prediction.dtype)
+            print("Prediction min:", prediction.min().item())
+            print("Prediction max:", prediction.max().item())
+            print("Prediction mean:", prediction.mean().item())
+            print("=" * 60)
+
+            print("PREDICTION FRAMES:", prediction.shape[0])
+            print("PICKED FRAMES:", len(pickedimg[0]))
+            print("IMAGE FRAMES:", len(imgs[0]))
+            print("BBX FRAMES:", len(bbxs[0]))
+
+            # Post-processing / ROI Paste (uses the improved emb_roi2im from data_avhubert.py)
+            processed_img = emb_roi2im(pickedimg, imgs, bbxs, prediction, device)
+
+            # Batch Processing Loop
+            for i, video in enumerate(processed_img):
+                name = names[i]
+                out_path = os.path.join(args.save_root, f'{name}.mp4')
+                tmpvideo = os.path.join(args.save_root, f'{name}_temp.mp4')
+
+                os.makedirs(os.path.dirname(out_path), exist_ok=True)
+
+                if len(video) == 0:
+                    print(f"[WARNING] Empty video for {name}, skipping.")
+                    continue
+
+                # Get original FPS (or default 25)
+                original_video_path = os.path.join(args.video_root, f'{name}.mp4')
+                fps = get_video_fps(original_video_path, default_fps=25.0)
+                print(f"[{name}] Using FPS = {fps:.2f}")
+
+                # Frame size
+                first_frame = video[0]
+                if isinstance(first_frame, torch.Tensor):
+                    first_frame = first_frame.cpu().numpy()
+                height, width = first_frame.shape[:2]
+
+                # Write temporary video (mp4v is widely compatible)
+                fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+                out = cv2.VideoWriter(tmpvideo, fourcc, fps, (width, height))
+
+                if not out.isOpened():
+                    raise RuntimeError(f"Failed to open VideoWriter for {tmpvideo}")
+
+                for im in video:
+                    if isinstance(im, torch.Tensor):
+                        im_np = im.cpu().detach().numpy()
+                    else:
+                        im_np = im
+
+                    # Ensure uint8 and correct shape
+                    if im_np.dtype != np.uint8:
+                        if im_np.max() <= 1.0:
+                            im_np = (im_np * 255.0).astype(np.uint8)
+                        else:
+                            im_np = np.clip(im_np, 0, 255).astype(np.uint8)
+
+                    if im_np.ndim == 2:  # grayscale safety
+                        im_np = cv2.cvtColor(im_np, cv2.COLOR_GRAY2BGR)
+                    elif im_np.shape[-1] == 3:
+                        # already BGR or RGB – keep as is (cv2 expects BGR)
+                        pass
+
+                    out.write(im_np)
+
+                out.release()
+
+                # Audio path
+                audio = os.path.join(args.audio_root, f'{name}.wav')
+                if not os.path.exists(audio):
+                    print(f"[WARNING] Audio not found for {name}: {audio}")
+                    # Still keep the silent video
+                    if os.path.exists(tmpvideo):
+                        os.replace(tmpvideo, out_path)
+                    continue
+
+                # Robust FFmpeg command
+                # - re-encode video to H.264 for better compatibility
+                # - copy / encode audio to AAC
+                # - shortest to avoid length mismatch
+                command = (
+                    f'{args.ffmpeg} -y '
+                    f'-i "{tmpvideo}" '
+                    f'-i "{audio}" '
+                    f'-c:v libx264 -preset medium -crf 18 '
+                    f'-c:a aac -b:a 128k '
+                    f'-shortest '
+                    f'-movflags +faststart '
+                    f'"{out_path}" '
+                    f'-loglevel error'
+                )
+
+                ret = subprocess.call(command, shell=(platform.system() != 'Windows'))
+
+                if ret != 0:
+                    print(f"[ERROR] FFmpeg failed for {name}. Keeping temporary video.")
+                    if os.path.exists(tmpvideo):
+                        os.replace(tmpvideo, out_path)
+                else:
+                    # Clean up temp file
+                    if os.path.exists(tmpvideo):
+                        os.remove(tmpvideo)
+                    print(f"[OK] Saved: {out_path}")
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(
+        description='Synthesize videos to be evaluated')
+
+    parser.add_argument('--filelist', help="Path of a file list containing all samples' name", required=True, type=str)
+    parser.add_argument("--video_root", help="Root folder of video", required=True, type=str)
+    parser.add_argument("--audio_root", help="Root folder of audio", required=True, type=str)
+    parser.add_argument('--bbx_root', help="Root folder of bounding boxes of faces", required=True, type=str)
+    parser.add_argument("--save_root", help="a directory to save synthesized videos", required=True, type=str)
+    parser.add_argument('--ckpt_path', help='pretrained checkpoint', required=True, type=str)
+    parser.add_argument('--avhubert_root', help='Path of av_hubert root', required=True, type=str)
+    parser.add_argument('--check', help='whether filter out videos which have been synthesized in save_root', default=False, type=bool)
+    parser.add_argument('--ffmpeg', default='ffmpeg', type=str)
+    parser.add_argument('--device', default=0, type=int)
+
+    args = parser.parse_args()
+
+    args.video_root = resolve_data_root(args.video_root, 'main')
+    args.bbx_root = resolve_data_root(args.bbx_root, 'lrs2_bbx')
+    args.audio_root = resolve_data_root(args.audio_root, 'lrs2_audio')
+
+    device = "cuda:{}".format(args.device) if torch.cuda.is_available() else "cpu"
+
+    # Dataset and Dataloader setup
+    test_dataset = Talklipdata(args)
+    test_loader = DataLoader(test_dataset, batch_size=4, collate_fn=collate_fn, num_workers=0) #hparams.batch_size, 4,
+
+    model = TalkLip(*build_encoder(args.avhubert_root)).to(device)
+
+    model.load_state_dict(torch.load(args.ckpt_path, map_location=device)["state_dict"])
+    with torch.no_grad():
+        model_synt(test_loader, device, model, args)

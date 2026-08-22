@@ -4,13 +4,16 @@
 env/
 venv/
 
-# Cache
-.cache/
+# Python cache
 __pycache__/
-.ipynb_checkpoints/
+*.py[cod]
 .pytest_cache/
-*.pyc
+.ipynb_checkpoints/
+.cache/
+
+# OS
 .DS_Store
+Thumbs.db
 
 # Models and checkpoints
 models/

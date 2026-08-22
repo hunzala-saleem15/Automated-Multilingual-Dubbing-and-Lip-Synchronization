@@ -1,0 +1,119 @@
+# =========================
+# Frontend
+# =========================
+node_modules/
+**/node_modules/
+dist/
+build/
+
+# =========================
+# Backend - Python
+# =========================
+server/__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+server/.venv/
+server/venv/
+server/env/
+.venv/
+venv/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# User Uploaded Files
+# =========================
+server/uploads/
+**/uploads/
+
+# =========================
+# Test / Temporary Audio
+# =========================
+server/test/*.wav
+server/test/*.mp3
+server/test/*.m4a
+**/test/*.wav
+**/test/*.mp3
+**/test/*.m4a
+
+# =========================
+# Logs
+# =========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Temporary / Generated
+# =========================
+tmp/
+temp/
+outputs/
+results/
+coverage/
+
+# =========================
+# OS / Editor Files
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# TalkLip Generated / Test Files
+# =========================
+server/Talklip/outputs.avi
+server/Talklip/debug_frame*.png
+server/Talklip/runtime/
+server/Talklip/data/videos/
+server/Talklip/data/bbx/
+server/Talklip/**/*.wav
+server/Talklip/**/*.mp4
+server/Talklip/**/*.avi
+server/Talklip/**/*.npy
+
+# =========================
+# Payment Service Secrets
+# =========================
+payment-service/.env
+**/payment-service/.env
+
+# =========================
+# AV-HuBERT
+# =========================
+# AV-HuBERT source code is NOT ignored.
+# Its cache and model files remain ignored below.
+
+# =========================
+# Python Cache
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# =========================
+# Virtual Environments
+# =========================
+.venv/
+venv/
+env/
+
+# =========================
+# Model / Checkpoint Files
+# =========================
+*.pth
+*.pt
+*.ckpt
+*.bin
+*.safetensors

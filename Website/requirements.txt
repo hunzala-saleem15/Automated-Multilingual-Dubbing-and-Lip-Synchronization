@@ -1,0 +1,31 @@
+pip install torch torchaudio
+pip install fastapi uvicorn
+pip install faster-whisper
+pip install transformers sentencepiece
+pip install TTS
+pip install opencv-python ffmpeg-python
+pip install httpx
+pip install fastapi uvicorn httpx pymongo motor python-dotenv python-multipart python-jose[cryptography] passlib[bcrypt] email-validator pillow opencv-python ffmpeg-python faster-whisper transformers torch torchaudio
+
+client = npm run dev
+server = uvicorn app.main:app --reload
+
+cd /d D:\Website\server\Talklip
+
+python preparation\bbx_extract.py ^
+  --filelist D:\Website\server\outputs\runtime\filelist.txt ^
+  --video_root D:\Website\server\outputs\runtime\videos ^
+  --bbx_root D:\Website\server\outputs\runtime\bbx ^
+  --batch_size 8
+
+cd /d D:\Website\server\Talklip
+
+python inf_test.py ^
+  --filelist D:\Website\server\outputs\runtime\filelist.txt ^
+  --video_root D:\Website\server\outputs\runtime\videos ^
+  --audio_root D:\Website\server\test ^
+  --bbx_root D:\Website\server\outputs\runtime\bbx ^
+  --save_root D:\Website\server\outputs\runtime ^
+  --ckpt_path D:\Website\server\app\model_weights\talklip\global_contrastive.pth ^
+  --avhubert_root D:\Website\server\Talklip\av_hubert ^
+  --ffmpeg D:\ffmpeg\bin\ffmpeg.exe
