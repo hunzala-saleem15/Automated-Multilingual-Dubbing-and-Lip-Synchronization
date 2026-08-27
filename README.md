@@ -29,7 +29,7 @@ These responses highlight the need for a simpler, more efficient, and user-frien
 | Lip Synchronisation | *Seeing what you said: Talking face generation guided by a lip reading expert.* |
 
 # Architecture Overview
-![image alt](https://github.com/hunzala-saleem15/Automated-Multilingual-Dubbing-and-Lip-Synchronization/blob/main/Architecture.jpeg?raw=true)
+![image alt](https://github.com/hunzala-saleem15/Automated-Multilingual-Dubbing-and-Lip-Synchronization/blob/main/architecture.png?raw=true)
 
 # Datasets
 
