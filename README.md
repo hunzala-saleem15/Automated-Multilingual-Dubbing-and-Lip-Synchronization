@@ -104,7 +104,7 @@ The frontend is located in the `Website/client` folder of this repository.
 
 ### Frontend Screenshot
 
-![Website Frontend](docs/frontend.png)
+![image alt](https://github.com/hunzala-saleem15/Automated-Multilingual-Dubbing-and-Lip-Synchronization/blob/main/frontend.png?raw=true)
 
 ## Backend
 
