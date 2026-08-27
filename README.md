@@ -85,9 +85,59 @@ https://huggingface.co/NidaIlyas/mt_lmt-lora-en-hi
 
 https://huggingface.co/NidaIlyas/mt_lmt-finetuned-en-ar-fast
 
+# Website
+
+The project includes a web-based application consisting of both a frontend and a backend. The website provides an interface for users to upload videos, select the target language, process the video through the multilingual dubbing pipeline, and view the generated output.
+
+## Frontend
+
+The frontend of the website is responsible for providing the user interface and allowing users to interact with the multilingual dubbing system. It includes features such as:
+
+- User account and authentication
+- Video upload
+- Target language selection
+- Video processing
+- Result visualization
+- Downloading the generated dubbed video
+
+The frontend is located in the `Website/client` folder of this repository.
+
+### Frontend Screenshot
+
+![Website Frontend](docs/frontend.png)
+
+## Backend
+
+The backend is responsible for handling the API requests, video processing, AI model inference, and communication between the frontend and the different components of the dubbing pipeline.
+
+The backend is located in the `Website/server` folder of this repository and is implemented using FastAPI.
+
+The backend integrates the following components:
+
+- Automatic Speech Recognition (ASR)
+- Machine Translation (MT)
+- Text-to-Speech (TTS)
+- Lip Synchronization
+- Audio and video processing
+
+The **frontend and backend of the website are successfully running and integrated** as part of the complete multilingual dubbing and lip synchronization system.
+
+## Model Weights
+
+The model weights required by the website are hosted on Hugging Face. The repository contains the required model folders for:
+
+- NLLB
+- TalkLip
+- Whisper
+- XTTS
+
+The complete model weights are available here:
+
+https://huggingface.co/hunzala-saleem/Automated-Multilingual-Dubbing-and-Lip-Synchronization
+
 # Team Members
 
-- Hunzala Saleem
+- Hanzala Saleem
 - Nida Ilyas
 - Ayesha Sarfraz
 - Laika Sarfraz
