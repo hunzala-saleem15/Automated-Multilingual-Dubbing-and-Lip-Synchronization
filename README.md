@@ -148,14 +148,10 @@ Special thanks to GIFT University for providing GPU infrastructure, computationa
 We further appreciate the contributions of the open-source research community whose work in speech processing, natural language processing, computer vision, and generative AI made this project possible.
 # License
 
-This project is intended for:
+© 2026 Hanzala Saleem, Nida Ilyas, Ayesha Sarfraz, Laika Sarfraz.
+All rights reserved.
 
-- Academic Research
-- Educational Purposes
-- Non-commercial experimentation
+This project and its original source code are protected by copyright.
+The project may not be copied, modified, or redistributed without
+permission from the authors, except where permitted by the applicable license.
 
-Please ensure compliance with:
-
-- Dataset licenses
-- Pretrained model licenses
-- Third-party repository licenses
